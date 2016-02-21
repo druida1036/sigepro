@@ -1,0 +1,39 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:panelGrid columns="2" columnClasses="name" id="usuario">
+		<h:outputLabel for="Nombre" value="#{msg['jsp.lbl.nombre']}:"
+			styleClass="requerido" />
+		<h:inputText id="Nombre" value="#{recursoBean.recurso.usuario.nombre}"
+			required="true" size="50" maxlength="100"  disabled="true"/>
+		<h:outputLabel for="Apellido" value="#{msg['jsp.lbl.apellido']}:"
+			styleClass="requerido" />
+		<h:inputText id="Apellido" value="#{recursoBean.recurso.usuario.apellido}"
+			required="true" size="50" maxlength="100" disabled="true"/>
+		<h:outputLabel for="Correo" value="#{msg['jsp.lbl.correo']}:"
+			styleClass="requerido" disabled="true"/>
+		<h:inputText id="Correo" value="#{recursoBean.recurso.usuario.correo}"
+			required="true" size="50" maxlength="100" disabled="true">
+			<rich:beanValidator summary="#{msg['error.login.email-invalido']}" />
+		</h:inputText>
+		<h:outputLabel for="Login" value="#{msg['jsp.lbl.login']}:"
+			styleClass="requerido" />
+		<h:inputText id="Login" value="#{recursoBean.recurso.usuario.login}"
+			required="true" size="50" maxlength="100" disabled="true">
+		</h:inputText>
+		
+		<h:outputLabel for="Cargo" value="#{msg['jsp.lbl.cargo']}:"
+			styleClass="requerido" />
+		<h:inputText id="Cargo" value="#{recursoBean.recurso.usuario.cargo}"
+			required="true" size="50" maxlength="100" disabled="true"/>
+		
+	</h:panelGrid>
+
+</ui:composition>

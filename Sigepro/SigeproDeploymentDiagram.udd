@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:DeploymentDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="SigeproDeploymentDiagram" id="{UMLID=_ZNVjYIV8EeC8Eb3My32UFQ,JavaID=}" metadata="uml2-1.0" initialized="true" tag="10" key="3230303730363239205369676570726F">
+  <children xsi:type="editmodel:NodeEditModel" targetConnections="//@children.3/@sourceConnections.0 //@children.4/@sourceConnections.0" name="Equipo de desarrollo" backgroundRGB="251,251,251" location="56,154" size="140,61" taggedValues="{profile.object.name=Equipo de desarrollo}" description="Node_Desktop" id="{UMLID=_w7_lQIYlEeC9lONtiNloMQ}" itemName="Equipo de desarrollo" type="">
+    <sourceConnections xsi:type="editmodel:ComponentAssociationEditModel" name="UTP 8" autoLocated="true" id="{UMLID=_pACl4IYmEeC9lONtiNloMQ}" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.0/@children.1" label="//@children.0/@sourceConnections.0/@children.2" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:ComponentEndEditModel" name="Switch" location="140,30" id="{UMLID=_pAD0AIYmEeC9lONtiNloMQ}" attachSource="true" roleLabel="//@children.0/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="Switch" location="203,163" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:ComponentEndEditModel" name="Equipo de desarrollo" location="0,28" id="{UMLID=_pADM8IYmEeC9lONtiNloMQ}" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="Equipo de desarrollo" location="357,163" size="98,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" name="UTP 8" size="28,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:NodeEditModel" targetConnections="//@children.2/@sourceConnections.0 //@children.0/@sourceConnections.0" name="Switch" backgroundRGB="251,251,251" location="462,156" size="140,57" taggedValues="{profile.object.name=Switch}" description="Node_Hub" id="{UMLID=_4-0MMIYlEeC9lONtiNloMQ}" itemName="Switch" type="" instanceLevel="true"/>
+  <children xsi:type="editmodel:NodeEditModel" targetConnections="//@children.5/@sourceConnections.0 //@children.6/@sourceConnections.0 //@children.7/@sourceConnections.0" name="SGBD" backgroundRGB="251,251,251" location="448,357" size="140,57" taggedValues="{profile.object.name=SGBD}" description="Node_Desktop" id="{UMLID=_AlPyEIYmEeC9lONtiNloMQ}" itemName="SGBD" type="" instanceLevel="true">
+    <sourceConnections xsi:type="editmodel:ComponentAssociationEditModel" name="UTP 8" autoLocated="true" id="{UMLID=_PkCFkIYmEeC9lONtiNloMQ}" source="//@children.2" target="//@children.1" targetEnd="//@children.2/@sourceConnections.0/@children.1" label="//@children.2/@sourceConnections.0/@children.2" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:ComponentEndEditModel" name="SGBD" location="76,0" id="{UMLID=_PkD6wIYmEeC9lONtiNloMQ}" attachSource="true" roleLabel="//@children.2/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="SGBD" location="531,336" size="29,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:ComponentEndEditModel" name="Switch" location="62,57" id="{UMLID=_PkCsoIYmEeC9lONtiNloMQ}" roleLabel="//@children.2/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="Switch" location="531,220" size="34,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" name="UTP 8" size="28,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ArtifactEditModel" name="sigepro.war" location="56,42" size="105,29" taggedValues="{profile.object.name=sigepro.war}" id="{UMLID=_zSd38IYmEeC9lONtiNloMQ}" itemName="sigepro.war">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" name="Desplegar" size="2,1" autoLocated="true" id="{UMLID=_6Hz_IIYmEeC9lONtiNloMQ}" source="//@children.3" target="//@children.0" targetEnd="//@children.3/@sourceConnections.0/@children.1" label="//@children.3/@sourceConnections.0/@children.2" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="52,29" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="52,0"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="Desplegar" size="49,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:NotepadEditModel" foregroundRGB="91,91,0" location="58,266" size="136,24" fontInfo="Arial-8-0" note="Ambiente de desarrollo">
+    <sourceConnections xsi:type="editmodel:IndicationEditModel" autoLocated="true" source="//@children.4" target="//@children.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="68,0" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="70,61"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:NotepadEditModel" foregroundRGB="91,91,0" location="195,350" size="140,71" fontInfo="Arial-8-0" note="Servidor (aloja la ultima &#xD;&#xA;version disponible para &#xD;&#xA;pruebas)">
+    <sourceConnections xsi:type="editmodel:IndicationEditModel" autoLocated="true" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="140,35" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="0,28"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ArtifactEditModel" name="sigepro.backup" location="630,308" size="120,29" taggedValues="{profile.object.name=sigepro.backup}" id="{UMLID=_Tn8xgIYnEeC9lONtiNloMQ}" itemName="sigepro.backup">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" name="Desplegar" size="2,1" autoLocated="true" id="{UMLID=_W8MwgIYnEeC9lONtiNloMQ}" source="//@children.6" target="//@children.2" targetEnd="//@children.6/@sourceConnections.0/@children.1" label="//@children.6/@sourceConnections.0/@children.2" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="10,29" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="140,10"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="Desplegar" size="49,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ArtifactEditModel" name="sigepro.war" location="634,424" size="106,29" taggedValues="{profile.object.name=sigepro.war}" id="{UMLID=_ZwRaoIYnEeC9lONtiNloMQ}" itemName="sigepro.war">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" name="Desplegar" size="2,1" autoLocated="true" id="{UMLID=_cZnbcIYnEeC9lONtiNloMQ}" source="//@children.7" target="//@children.2" targetEnd="//@children.7/@sourceConnections.0/@children.1" label="//@children.7/@sourceConnections.0/@children.2" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="140,47"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="Desplegar" size="49,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+  </children>
+  <diagramOptions xsi:type="options:DeploymentDiagramOptions" level="0" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="1022,252" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+</editmodel:DeploymentDiagramEditModel>

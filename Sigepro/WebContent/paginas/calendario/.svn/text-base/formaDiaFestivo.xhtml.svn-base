@@ -1,0 +1,29 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a:outputPanel ajaxRendered="true">
+		<h:panelGrid id="formaDiaFestivo" columns="2" columnClasses="name">
+			<h:outputLabel for="motivo" value="#{msg['jsp.lbl.motivo']}:"
+				styleClass="requerido" />
+			<h:inputText id="motivo" value="#{calendarioBean.festivo.razon}"
+				required="true" size="50" maxlength="50" style="width:150px" />
+			<h:outputLabel for="fecha" value="#{msg['jsp.lbl.fecha']}:"
+				styleClass="requerido" />
+			<rich:calendar id="fecha" cellWidth="25px" cellHeight="25px"
+				style="width:120px" value="#{calendarioBean.festivo.fecha}"
+				datePattern="d/M/yyyy"></rich:calendar>
+		</h:panelGrid>
+	</a:outputPanel>
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

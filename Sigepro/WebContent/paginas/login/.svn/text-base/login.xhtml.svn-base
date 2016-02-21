@@ -1,0 +1,109 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/templateLogin.xhtml">
+
+	<ui:define name="body">
+		<a:form id="loginForm" prependId="false"
+			rendered="#{!ingresoBean.iniciaSesion}">
+
+			<rich:panel id="PanelLogin">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.login.titulo']}" />						
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup styleClass="franjazul-4Col" layout="block">
+					<h:panelGrid columns="4" rowClasses="prop"
+						columnClasses="name,value">
+
+						<h:outputLabel for="Usuario" value="#{msg['jsp.login.usuario']}: " />
+						<h:inputText id="Usuario" value="#{ingresoBean.usuario.login}"
+							requiredMessage="#{msg['jsp.requiredMessage.usuario']}"
+							required="true" size="40" maxlength="100" />
+
+
+						<h:outputLabel for="Contrasenia"
+							value="#{msg['jsp.login.clave']}: " styleClass="franjazul-4Col" style="font-size: 12px;font-weight:bold;color:#0A3D89"/>
+						<h:inputSecret id="Contrasenia"
+							value="#{ingresoBean.usuario.contrasena}"
+							requiredMessage="#{msg['jsp.requiredMessage.contrasenia']}"
+							required="true" size="40" maxlength="50" />
+
+						<h:outputLabel for="Caracteres"
+							value="#{msg['jsp.lbl.caracteres']}: " />
+						<h:inputText id="Caracteres" value="#{captchaBean.texto}"
+							maxlength="10" size="40"
+							requiredMessage="#{msg['jsp.requiredMessage.captcha']}"
+							required="true" />
+
+						<rich:paint2D id="imgCaptcha" format="jpeg"
+							width="#{captchaBean.captchaWidth}"
+							height="#{captchaBean.captchaHeight}"
+							paint="#{captchaBean.paintCaptcha}"
+							data="#{captchaBean.randomString}" />
+
+						<a:commandButton value="#{msg['jsp.btn.refrescar']}"
+							reRender="imgCaptcha,Caracteres" immediate="true">
+							<f:setPropertyActionListener value="#{null}"
+								target="#{captchaBean.texto}" />
+						</a:commandButton>
+						<h:panelGroup />
+						<h:panelGroup />
+					</h:panelGrid>
+
+					<h:panelGrid columns="4" rowClasses="prop">
+						<h:panelGroup style="width: 200px;" layout="block">
+							<a:commandButton id="botonLogin"
+								value="#{msg['jsp.btn.ingresar']}"
+								action="#{ingresoBean.loginAction}" eventsQueue="foo"
+								reRender="imgCaptcha,modalCambioClave,modalSeleccionSubsistema" />
+						</h:panelGroup>
+						<h:panelGroup />
+
+					</h:panelGrid>
+				</h:panelGroup>
+			</rich:panel>
+		</a:form>
+
+
+		<rich:modalPanel id="modalCambioClave" height="350" width="450"
+			showWhenRendered="#{ingresoBean.renderModalCambioClave}">
+			<a:form id="cambioClaveForm" prependId="false">
+
+				<rich:panel id="PanelCambioContrasenia">
+					<f:facet name="header">
+						<h:panelGrid columns="2" width="100%">
+							<h:outputText value="#{msg['jsp.cuenta.cambioContrasenia']}" />
+						</h:panelGrid>
+					</f:facet>
+
+					<f:subview id="formularioCambioContrasenia">
+						<h:panelGroup styleClass="franjazul-2Col" layout="block">
+						</h:panelGroup>
+					</f:subview>
+				</rich:panel>
+				<h:panelGroup layout="block">
+					<a:commandButton id="guardar" value="#{msg['jsp.lbl.guardar']}"
+						action="#{cambiarContraseniaBean.guardarEnLogin}"
+						reRender="modalCambioClave,modalSeleccionSubsistema">
+					</a:commandButton>
+					<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+						action="#{cambiarContraseniaBean.cancelarLogin}" immediate="true">
+						<f:setPropertyActionListener value="#{false}"
+							target="#{ingresoBean.renderModalCambioClave}" />
+					</a:commandButton>
+				</h:panelGroup>
+			</a:form>
+		</rich:modalPanel>
+
+		<ui:include src="modalSubsistema.xhtml" />
+
+	</ui:define>
+</ui:composition>

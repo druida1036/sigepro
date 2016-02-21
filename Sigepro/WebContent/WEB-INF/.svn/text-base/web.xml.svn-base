@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<description>Sistema de gestion de proyectos</description>
+	<display-name>Sigepro</display-name>
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.REFRESH_PERIOD</param-name>
+		<param-value>2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.SKIN</param-name>
+		<param-value>co/com/sigepro/configuracion/laguna14</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.VIEW_MAPPINGS</param-name>
+		<param-value>*.xhtml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/paginas/error/sesionExpirada.jsp</location>
+	</error-page>
+	<filter>
+		<filter-name>FiltroSeguridad</filter-name>
+		<filter-class>co.com.sigepro.control.util.FiltroSeguridad</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>FiltroSeguridad</filter-name>
+		<url-pattern>/faces/paginas/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<display-name>Ajax4jsf Filter</display-name>
+		<filter-name>ajax4jsf</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ajax4jsf</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -1,0 +1,178 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<h:form id="rolForm">
+
+			<rich:simpleTogglePanel id="pannelConsulta"
+				label="#{msg['jsp.rol.consulta']}" switchType="ajax">
+
+				<h:panelGrid columns="3">
+					<h:outputLabel for="roles" value="#{msg['jsp.rol.rol']}: " />
+					<h:selectOneMenu id="roles" value="#{rolBean.roles.idSeleccionado}">
+						<f:selectItems value="#{rolBean.roles.lista}" />
+					</h:selectOneMenu>
+					<a:commandButton id="cargar" value="#{msg['jsp.btn.cargar']}"
+						action="#{rolBean.cargar}" reRender="rolTabs" />
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<h:panelGroup id="rolTabs">
+				<rich:tabPanel rendered="#{rolBean.roles.idSeleccionado != null}">
+
+					<rich:tab label="#{msg['jsp.rol.tab.descipcion']}">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="Nombre" value="#{msg['jsp.lbl.nombre']}:"
+								styleClass="requerido" />
+							<h:outputText id="Nombre" value="#{rolBean.rol.nombre}"
+								required="true" size="50" maxlength="100" />
+							<h:outputLabel for="Descripcion"
+								value="#{msg['jsp.lbl.descripcion']}:" styleClass="requerido" />
+							<h:outputText id="Descripcion" value="#{rolBean.rol.descripcion}"
+								required="true" size="50" maxlength="100" />
+							<h:outputLabel for="ip" value="#{msg['jsp.lbl.ctlIp']}:" />
+							<h:outputText id="ip" value="#{rolBean.rol.ctlIp}" />
+							<h:outputLabel for="Modificador"
+								value="#{msg['jsp.lbl.ctlUsuario']}:" />
+							<h:outputText id="Modificador" value="#{rolBean.rol.ctlUsuario}" />
+							<h:outputLabel for="Modificacion"
+								value="#{msg['jsp.lbl.ctlFecMod']}:" />
+							<h:outputText id="Modificacion" value="#{rolBean.rol.ctlFecMod}" />
+							<h:outputLabel for="creacion"
+								value="#{msg['jsp.lbl.ctlFecAlta']}:" />
+							<h:outputText id="creacion" value="#{rolBean.rol.ctlFecAlta}" />
+							<h:outputLabel for="Estado" value="#{msg['jsp.lbl.ctlEstado']}:"
+								styleClass="requerido" />
+							<h:outputText id="Estado"
+								value="${rolBean.rol.ctlEstado == 1 ? msg['jsp.lbl.ctlEstado.activo'] : rolBean.rol.ctlEstado == 0 ? msg['jsp.lbl.ctlEstado.inactivo'] : msg['jsp.lbl.ctlEstado.vacio']}" />
+						</h:panelGrid>
+					</rich:tab>
+
+					<rich:tab label="#{msg['jsp.rol.tab.permisos']}">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="paginas" value="#{msg['jsp.rol.paginas']}: " />
+
+							<rich:listShuttle sourceValue="#{rolBean.paginas1}"
+								targetValue="#{rolBean.paginasTmp1}" var="pagina"
+								listsHeight="250" sourceListWidth="200" targetListWidth="200"
+								sourceCaptionLabel="Lista de #{msg['jsp.rol.paginas']}"
+								targetCaptionLabel="#{msg['jsp.rol.paginas']} seleccionadas"
+								converter="convertidor" id="paginas" >
+								<rich:column>
+									<h:outputText id="nombrePagina" value="#{pagina}" >
+									</h:outputText>
+								</rich:column>
+							</rich:listShuttle>
+						</h:panelGrid>
+					</rich:tab>
+
+					<rich:tab label="#{msg['jsp.rol.tab.usuarios']}">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}: " />
+							<h:inputText id="nombre"
+								value="#{personaListaBean.persona.nombre}" maxlength="100"
+								size="50" />
+
+							<h:outputLabel for="apellido"
+								value="#{msg['jsp.lbl.apellido']}: " />
+							<h:inputText id="apellido"
+								value="#{personaListaBean.persona.apellido}" maxlength="100"
+								size="50" />
+
+							<h:outputLabel for="login" value="#{msg['jsp.lbl.login']}: " />
+							<h:inputText id="login" value="#{personaListaBean.persona.login}"
+								maxlength="100" size="50" />
+
+							<h:outputLabel for="mail" value="#{msg['jsp.lbl.correo']}: " />
+							<h:inputText id="mail" value="#{personaListaBean.persona.correo}"
+								maxlength="100" size="50" />
+						</h:panelGrid>
+
+						<h:panelGroup styleClass="actionButtons" layout="block">
+							<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+								action="#{personaListaBean.consultar}" reRender="resultados" />
+							<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+								action="#{personaListaBean.limpiar}"
+								reRender="persona,resultados" />
+						</h:panelGroup>
+
+						<rich:panel id="resultados" styleClass="results">
+							<f:facet name="header">
+								<h:panelGrid columns="2" width="100%">
+									<h:outputText
+										value="#{msg['jsp.lbl.resultados']} (#{personaListaBean.numeroResultados})" />
+								</h:panelGrid>
+							</f:facet>
+
+							<h:panelGroup layout="block">
+								<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+									rendered="#{empty personaListaBean.personas}"
+									styleClass="textosenfranjaazul" />
+
+								<rich:dataTable id="tablaPersona" var="persona"
+									value="#{personaListaBean.personas}"
+									rendered="#{not empty personaListaBean.personas}" rows="10">
+									<rich:column sortBy="#{persona.nombre}">
+										<f:facet name="header">
+											<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+										</f:facet>
+										<h:outputText id="nombre" value="#{persona.nombre}" />
+									</rich:column>
+
+									<rich:column sortBy="#{persona.apellido}">
+										<f:facet name="header">
+											<h:outputText value="#{msg['jsp.lbl.apellido']}" />
+										</f:facet>
+										<h:outputText id="apellido" value="#{persona.apellido}" />
+									</rich:column>
+
+									<rich:column sortBy="#{persona.login}">
+										<f:facet name="header">
+											<h:outputText value="#{msg['jsp.lbl.login']}" />
+										</f:facet>
+										<h:outputText id="login" value="#{persona.login}" />
+									</rich:column>
+
+									<rich:column sortBy="#{persona.correo}">
+										<f:facet name="header">
+											<h:outputText value="#{msg['jsp.lbl.correo']}" />
+										</f:facet>
+										<h:outputText id="correo" value="#{persona.correo}" />
+									</rich:column>
+
+									<rich:column styleClass="action">
+										<f:facet name="header">
+											<h:outputText value="#{msg['jsp.lbl.accion']}" />
+										</f:facet>
+										<a:commandLink id="ver" value="#{msg['jsp.btn.borrar']}"
+											action="#{rolBean.usuarioBorrar}">
+											<f:setPropertyActionListener value="#{persona}"
+												target="#{personaListaBean.personaSeleccionado}" />
+										</a:commandLink>
+									</rich:column>
+								</rich:dataTable>
+
+								<rich:datascroller id="paginadorPersona" for="tablaPersona"
+									renderIfSinglePage="false" />
+							</h:panelGroup>
+						</rich:panel>
+					</rich:tab>
+				</rich:tabPanel>
+			</h:panelGroup>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="crear" value="#{msg['jsp.rol.crearRol']}"
+					action="#{rolBean.crear}" />
+				<a:commandButton id="guardar" value="Guardar"
+					action="#{rolBean.guardar}" />
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>

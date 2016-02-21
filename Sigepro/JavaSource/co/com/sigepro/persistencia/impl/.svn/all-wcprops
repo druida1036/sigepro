@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/Sigepro/svn/!svn/ver/431/Sigepro/JavaSource/co/com/sigepro/persistencia/impl
+END
+RolPaginaAccionDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/RolPaginaAccionDAOImpl.java
+END
+RolDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/Sigepro/svn/!svn/ver/177/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/RolDAOImpl.java
+END
+AccionDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/Sigepro/svn/!svn/ver/282/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/AccionDAOImpl.java
+END
+HerramientaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/Sigepro/svn/!svn/ver/288/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/HerramientaDAOImpl.java
+END
+PaginaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/PaginaDAOImpl.java
+END
+CalendarioDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/Sigepro/svn/!svn/ver/186/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/CalendarioDAOImpl.java
+END
+MetodologiaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/Sigepro/svn/!svn/ver/416/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/MetodologiaDAOImpl.java
+END
+MenuDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/MenuDAOImpl.java
+END
+ProyectoDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/Sigepro/svn/!svn/ver/303/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/ProyectoDAOImpl.java
+END
+NotificacionDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/Sigepro/svn/!svn/ver/248/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/NotificacionDAOImpl.java
+END
+EspecialidadDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/Sigepro/svn/!svn/ver/177/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/EspecialidadDAOImpl.java
+END
+PersonaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/192/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/PersonaDAOImpl.java
+END
+SubmenuDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/SubmenuDAOImpl.java
+END
+SubsistemaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/SubsistemaDAOImpl.java
+END
+FestivoDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/278/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/FestivoDAOImpl.java
+END
+ReunionDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/345/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/ReunionDAOImpl.java
+END
+RecursoDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/311/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/RecursoDAOImpl.java
+END
+PropuestaDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/Sigepro/svn/!svn/ver/366/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/PropuestaDAOImpl.java
+END
+ClienteDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/278/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/ClienteDAOImpl.java
+END
+AbstractHibernateDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/Sigepro/svn/!svn/ver/419/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/AbstractHibernateDaoImpl.java
+END
+VariableDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/Sigepro/svn/!svn/ver/326/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/VariableDAOImpl.java
+END
+ActividadDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/Sigepro/svn/!svn/ver/440/Sigepro/JavaSource/co/com/sigepro/persistencia/impl/ActividadDAOImpl.java
+END

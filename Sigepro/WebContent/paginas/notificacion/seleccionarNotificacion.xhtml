@@ -1,0 +1,76 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<rich:simpleTogglePanel id="notificacion"
+		label="#{msg['jsp.notificacion.consulta']}" switchType="ajax">
+
+		<h:panelGrid columns="2">
+			<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}: " />
+			<h:inputText id="nombre"
+				value="#{notificacionListaBean.notificacion.nombre}" maxlength="100"
+				size="50" />
+		</h:panelGrid>
+	</rich:simpleTogglePanel>
+
+	<h:panelGroup styleClass="actionButtons" layout="block">
+		<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+			action="#{notificacionListaBean.consultar}" reRender="resultados" />
+		<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+			action="#{notificacionListaBean.limpiar}"
+			reRender="notificacion,resultados" />
+	</h:panelGroup>
+
+	<rich:panel id="resultados" styleClass="results">
+		<f:facet name="header">
+			<h:panelGrid columns="2" width="100%">
+				<h:outputText
+					value="#{msg['jsp.lbl.resultados']} (#{notificacionListaBean.numeroResultados})" />
+			</h:panelGrid>
+		</f:facet>
+
+		<h:panelGroup layout="block">
+			<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+				rendered="#{empty notificacionListaBean.notificaciones}"
+				styleClass="textosenfranjaazul" />
+
+			<rich:dataTable id="tablaNotificacion" var="notificacion"
+				value="#{notificacionListaBean.notificaciones}"
+				rendered="#{not empty notificacionListaBean.notificaciones}"
+				rows="4">
+				<rich:column sortBy="#{notificacion.nombre}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+					</f:facet>
+					<h:outputText id="nombre" value="#{notificacion.nombre}" />
+				</rich:column>
+
+				<rich:column sortBy="#{notificacion.ctlEstado}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.ctlEstado']}" />
+					</f:facet>
+					<h:outputText id="estado"
+						value="${notificacion.ctlEstado == 1 ? msg['jsp.lbl.ctlEstado.activo'] : msg['jsp.lbl.ctlEstado.inactivo']}" />
+				</rich:column>
+				<rich:column styleClass="action">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.accion']}" />
+					</f:facet>
+					<h:selectBooleanCheckbox
+						value="#{notificacionListaBean.notificacionesSeleccionadas[notificacion]}" >
+					</h:selectBooleanCheckbox>
+
+				</rich:column>
+			</rich:dataTable>
+
+			<rich:datascroller id="paginadorNotificacion" for="tablaNotificacion"
+				renderIfSinglePage="false" />
+		</h:panelGroup>
+	</rich:panel>
+</ui:composition>

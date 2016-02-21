@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/Sigepro/svn/!svn/ver/421/Sigepro/WebContent/WEB-INF
+END
+faces-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/Sigepro/svn/!svn/ver/421/Sigepro/WebContent/WEB-INF/faces-config.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/Sigepro/svn/!svn/ver/321/Sigepro/WebContent/WEB-INF/applicationContext.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/Sigepro/svn/!svn/ver/321/Sigepro/WebContent/WEB-INF/web.xml
+END

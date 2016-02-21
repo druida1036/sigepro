@@ -1,0 +1,80 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<h:form id="metodologiaForm" styleClass="edit">
+			<rich:panel id="panelMetodologia">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.metodologia.editarMetodologia']}" />
+					</h:panelGrid>
+				</f:facet>
+
+
+				<h:panelGrid columns="2" columnClasses="alineacion,alineacion">
+					<h:panelGroup>
+						<rich:tree style="width:250px;height:450px; overflow: scroll;"
+							nodeSelectListener="#{metodologiaBean.procesarSeleccion}"
+							reRender="panelTrabajo,nodoMetodologia"
+							ajaxSubmitSelection="true" switchType="ajax"
+							value="#{metodologiaBean.raiz}" var="nodo" ajaxKeys="#{null}"
+							iconCollapsed="/tema/imagen/mas.gif"
+							iconExpanded="/tema/imagen/menos.gif" id="arbolMetodologia"
+							binding="#{metodologiaBean.tree}">
+							<rich:treeNode
+								changeExpandListener="#{metodologiaBean.procesarExpansion}"
+								id="nodoMetodologia" reRender="arbolMetodologia">
+								<h:outputText value="#{nodo.nombre}" />
+							</rich:treeNode>
+						</rich:tree>
+						<rich:contextMenu event="oncontextmenu" attachTo="nodoMetodologia"
+							submitMode="none">
+							<rich:menuItem value="Zoom In" id="zin"></rich:menuItem>
+							<rich:menuItem value="Zoom Out" id="zout"></rich:menuItem>
+						</rich:contextMenu>
+
+						<h:panelGroup styleClass="actionButtons" layout="block">
+							<a:commandButton id="expandir" image="/tema/imagen/expand.gif"
+								action="#{metodologiaBean.expandirArbol}"
+								reRender="arbolMetodologia" />
+							<rich:spacer width="5px" />
+							<a:commandButton id="colapsar" image="/tema/imagen/collapse.gif"
+								action="#{metodologiaBean.colapsarArbol}"
+								reRender="arbolMetodologia" />
+						</h:panelGroup>
+					</h:panelGroup>
+
+					<h:panelGroup id="panelTrabajo" style="width:638px">
+						<ui:include src="#{metodologiaBean.nodoSeleccionado.nodo.forma}" />
+					</h:panelGroup>
+				</h:panelGrid>
+
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="gantt" value="#{msg['jsp.btn.gantt']}"
+					oncomplete="Richfaces.showModalPanel('modalDiagramaGantt');"
+					reRender="modalDiagramaGantt"
+					rendered="#{metodologiaBean.vistaProyecto}" />
+				<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+					action="#{metodologiaBean.editarCancelar}" immediate="true" />
+			</h:panelGroup>
+
+		</h:form>
+		<ui:include src="categoria/modalCategoria.xhtml" />
+		<ui:include src="proceso/modalProceso.xhtml" />
+		<ui:include src="actividad/modalActividad.xhtml" />
+		<ui:include
+			src="/paginas/metodologia/actividad/modalNotificacion.xhtml" />
+		<ui:include src="/paginas/metodologia/actividad/modalPlantilla.xhtml" />
+		<ui:include src="/paginas/proyecto/modalDiagramaGantt.xhtml" />
+
+	</ui:define>
+</ui:composition>

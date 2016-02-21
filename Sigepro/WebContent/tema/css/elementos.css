@@ -1,0 +1,46 @@
+**************************************************
+TEXTOS, ENLACES
+**************************************************
+	
+/*Texto Rojo Chartis ::: Ejemplo de uso: Página: Error autenticación de usuario*/
+.textos-error-ingreso{
+	color:#B30C39;
+	font-size:14px;
+	font-weight:bold;
+}
+
+/*Textos verde Chartis ::: Ejemplo de uso: "Autenticado como: nombreusuario@chartisinsurance.com"*/
+.textos-verdes-autenticado{
+	color:#009491;
+	font-size:12px;
+	font-weight:bold;
+}
+
+/*Textos verde Chartis campos requeridos * ::: Ejemplo de uso: Todos los textos que indiquen que los campos son requeridos*/
+.textos-verdes-campos-requeridos{
+	color:#009491;
+	font-size:9px;
+	font-weight:bold;
+}
+
+/*Textos blancos ::: Ejemplo de uso: Títulos en todas las pantallas franja arriba*/
+.textos-blancos-franja-arriba{
+	color:#ffffff;
+	font-size:14px;
+	font-weight:bold;
+}
+
+/*Textos franja azul ::: Ejemplo de uso: Todos los textos que estarán en la franja azul*/
+.textosenfranjaazul{
+	font-weight:bold;
+	color:#0057A3;
+}
+
+/*Títulos azul Chartis ::: Ejemplo de uso: Página: Autenticación de usuario */
+.titulos-azules{
+	color:#0057A3;
+	font-size:16px;
+}
+.alineacio{
+	vertical-align: top
+}

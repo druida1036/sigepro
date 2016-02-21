@@ -1,0 +1,55 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:tabPanel id="dependencias" switchType="ajax">
+		<rich:tab id="actasNotificacion">
+			<f:facet name="label">
+				<h:panelGroup>
+					<h:outputText
+						value="#{msg['jsp.reunion.acta']}" />
+				</h:panelGroup>
+			</f:facet>
+
+			<h:outputText
+				value="#{msg['jsp.reunion.noActa']}"
+				rendered="#{empty reunionBean.reunion.actas}" />
+
+			<rich:dataTable id="tablaActasReunion" var="acta"
+				value="#{reunionBean.reunion.actas}"
+				rendered="#{not empty reunionBean.reunion.actas}">
+
+				<rich:column sortBy="#{acta.descripcion}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.descripcion']}" />
+					</f:facet>
+					<h:outputText id="referencia" value="#{acta.descripcion}" />
+				</rich:column>
+
+				<rich:column styleClass="action">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.accion']}" />
+					</f:facet>
+					<a:commandButton id="editar" reRender="modalActa"
+						oncomplete="#{rich:component('modalActa')}.show()"
+						image="/tema/imagen/editar.png">
+						<f:setPropertyActionListener value="#{acta}"
+							target="#{reunionBean.acta}" />
+					</a:commandButton>
+					<h:commandButton action="#{reunionBean.descargarDocumento}"
+						image="/tema/imagen/download.jpg">
+						<f:setPropertyActionListener value="#{acta}"
+							target="#{reunionBean.acta}" />
+					</h:commandButton>
+				</rich:column>
+
+			</rich:dataTable>
+		</rich:tab>
+	</rich:tabPanel>
+</ui:composition>

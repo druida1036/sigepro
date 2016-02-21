@@ -1,0 +1,72 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<f:facet name="label">
+		<h:panelGroup>
+			<h:outputText value="#{msg['jsp.metodologia.plantillas']}" />
+		</h:panelGroup>
+	</f:facet>
+
+	<h:outputText value="#{msg['jsp.metodologia.noPlantillas']}"
+		rendered="#{empty metodologiaBean.actividad.plantillas}" />
+
+	<rich:dataTable id="tablaPlantillas" var="plantilla"
+		value="#{metodologiaBean.actividad.plantillas}"
+		rendered="#{not empty metodologiaBean.actividad.plantillas}">
+
+		<rich:column sortBy="#{plantilla.nombre}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+			</f:facet>
+			<h:outputText id="nombre" value="#{plantilla.nombre}" />
+		</rich:column>
+
+		<rich:column sortBy="#{plantilla.descripcion}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.descripcion']}" />
+			</f:facet>
+			<h:outputText id="descripcion" value="#{plantilla.descripcion}" />
+		</rich:column>
+
+		<rich:column styleClass="action">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.accion']}" />
+			</f:facet>
+			<a:commandButton id="borrar" reRender="tablaPlantillas,dependencias"
+				action="#{metodologiaBean.eliminarPlantilla}"
+				image="/tema/imagen/borrar.png">
+				<f:setPropertyActionListener value="#{plantilla}"
+					target="#{metodologiaBean.plantilla}" />
+			</a:commandButton>
+			<a:commandButton id="editar" reRender="modalPlantilla"
+				oncomplete="#{rich:component('modalPlantilla')}.show()"
+				image="/tema/imagen/editar.png">
+				<f:setPropertyActionListener value="#{plantilla}"
+					target="#{metodologiaBean.plantilla}" />
+			</a:commandButton>
+			<h:commandButton action="#{metodologiaBean.descargarDocumento}"
+				image="/tema/imagen/download.jpg">
+				<f:setPropertyActionListener value="#{plantilla}"
+					target="#{metodologiaBean.plantilla}" />
+			</h:commandButton>
+		</rich:column>
+	</rich:dataTable>
+	<h:panelGroup styleClass="actionButtons" layout="block">
+		<a:commandButton ajaxSingle="true" id="agregarPlantilla"
+			action="#{metodologiaBean.limpiarPlantilla}"
+			oncomplete="#{rich:component('modalPlantilla')}.show()"
+			value="#{msg['jsp.metodologia.adicionarPlantilla']}"
+			reRender="modalPlantilla">
+		</a:commandButton>
+		<rich:toolTip for="agregarProceso"
+			value="#{msg['jsp.metodologia.adicionarPlantilla']}" />
+	</h:panelGroup>
+
+</ui:composition>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<a4j:outputPanel rendered="true" ajaxRendered="true">
+	<rich:modalPanel id="mp_mensajes"
+		showWhenRendered="#{MensajesBean.hayMensajes}" resizeable="false"
+		moveable="false" autosized="true">
+		<h:panelGrid columns="1">
+			<rich:dataTable value="#{MensajesBean.mensajes}" var="mensaje"
+				width="400">
+				<f:facet name="header">
+					<h:outputText value="Mensajes del Sistema" />
+				</f:facet>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo" />
+					</f:facet>
+					<h:outputText style="text-align:left;"
+						rendered="#{mensaje.severity.ordinal == 0}" value="INFORMACION" />
+					<h:outputText style="text-align:left;"
+						rendered="#{mensaje.severity.ordinal == 1}" value="ADVERTENCIA" />
+					<h:outputText style="text-align:left;"
+						rendered="#{mensaje.severity.ordinal == 2}" value="ERROR" />
+					<h:outputText style="text-align:left;"
+						rendered="#{mensaje.severity.ordinal == 3}" value="ERROR FATAL" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Mensaje" />
+					</f:facet>
+					<h:outputText value="#{mensaje.summary}" />
+				</rich:column>
+			</rich:dataTable>
+			<rich:spacer height="10" />
+			<a4j:commandButton action="#{MensajesBean.limpiarMensajes}"
+				immediate="true" value="#{msg_global.cerrar}"
+				onclick="Richfaces.hideModalPanel('mp_mensajes')" status="stt_dummy"/>
+		</h:panelGrid>
+	</rich:modalPanel>
+</a4j:outputPanel>
+</html>

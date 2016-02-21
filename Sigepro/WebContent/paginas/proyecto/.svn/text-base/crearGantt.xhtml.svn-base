@@ -1,0 +1,44 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<h:form id="proyectoForm" styleClass="edit" prependId="false">
+
+			<rich:panel>
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.proyecto.editarProyecto']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGroup styleClass="franjazul-2Col" layout="block">
+					<rich:paint2D id="painter" width="600" height="300" format="jpg"
+						paint="#{ganttBean.paint}" data="#{ganttBean.randomString}" />
+					<rich:inputNumberSlider showInput="false"
+						value="#{ganttBean.paginador.indice}" step="6" minValue="0"
+						maxValue="#{ganttBean.paginador.maxResultados}">
+						<a:support event="onchange" reRender="painter" />
+					</rich:inputNumberSlider>
+				</h:panelGroup>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="guardar" value="#{msg['jsp.lbl.guardar']}"
+					action="#{proyectoBean.crearAceptar}" />
+				<a:commandButton id="gantt" value="#{msg['jsp.lbl.gantt']}"
+					action="#{ganttBean.aumentarActividad}" reRender="painter">
+				</a:commandButton>
+
+
+				<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+					action="#{proyectoBean.crearCancelar}" immediate="true" />
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>

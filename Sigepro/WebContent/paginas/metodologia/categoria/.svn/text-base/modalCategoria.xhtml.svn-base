@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+<rich:modalPanel id="modalCategoria" height="280" width="450"
+	moveable="true" autosized="true">
+	<a:form>
+		<rich:panel id="panelCategoria">
+			<f:facet name="header">
+				<h:panelGrid columns="2" width="100%">
+					<h:outputText value="#{msg['jsp.metodologia.adicionarCategoria']}" />
+				</h:panelGrid>
+			</f:facet>
+			<h:panelGroup styleClass="franjazul-2Col" layout="block">
+				<ui:include src="formaCategoria.xhtml" />
+			</h:panelGroup>
+		</rich:panel>
+		<h:panelGroup styleClass="actionButtons" layout="block">
+			<a:commandButton id="guardar" value="#{msg['jsp.lbl.guardar']}"
+				action="#{metodologiaBean.agregarCategoria}"
+				onclick="if (#{facesContext.maximumSeverity.ordinal == 2}) Richfaces.hideModalPanel('modalCategoria');" />
+			<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+				onclick=" Richfaces.hideModalPanel('modalCategoria');"
+				immediate="true" />
+		</h:panelGroup>
+	</a:form>
+</rich:modalPanel>
+</html>

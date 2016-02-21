@@ -1,0 +1,54 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="proyectoForm">
+			<rich:panel id="panelProyecto">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.proyecto.detalleProyecto']}" />
+					</h:panelGrid>
+
+				</f:facet>
+
+				<h:panelGrid columns="2" styleClass="franjazul-2Col"
+					columnClasses="name,detalle">
+					<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}:" />
+					<h:outputText id="nombre" value="#{proyectoBean.proyecto.nombre}" />
+
+					<h:outputLabel for="ip" value="#{msg['jsp.lbl.ctlIp']}:" />
+					<h:outputText id="ip" value="#{proyectoBean.proyecto.ctlIp}" />
+					<h:outputLabel for="Modificador"
+						value="#{msg['jsp.lbl.ctlUsuario']}:" />
+					<h:outputText id="Modificador"
+						value="#{proyectoBean.proyecto.ctlUsuario}" />
+					<h:outputLabel for="Modificacion"
+						value="#{msg['jsp.lbl.ctlFecMod']}:" />
+					<h:outputText id="Modificacion"
+						value="#{proyectoBean.proyecto.ctlFecMod}" />
+					<h:outputLabel for="creacion" value="#{msg['jsp.lbl.ctlFecAlta']}:" />
+					<h:outputText id="creacion"
+						value="#{proyectoBean.proyecto.ctlFecAlta}" />
+					<h:outputLabel for="ctlEstado" value="#{msg['jsp.lbl.ctlEstado']}:" />
+					<h:outputText id="ctlEstado"
+						value="${proyectoBean.proyecto.ctlEstado}" />
+				</h:panelGrid>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="editar" value="#{msg['jsp.btn.editar']}"
+					action="#{proyectoBean.editarInicializar}" />
+				<a:commandButton id="aceptar" value="#{msg['jsp.btn.aceptar']}"
+					action="#{proyectoBean.verAceptar}" />
+			</h:panelGroup>
+
+		</a:form>
+	</ui:define>
+</ui:composition>

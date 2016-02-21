@@ -1,0 +1,94 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="especialidadForm">
+
+			<rich:simpleTogglePanel id="especialidad"
+				label="#{msg['jsp.especialidad.consulta']}" switchType="ajax">
+
+				<h:panelGrid columns="2">
+					<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}: " />
+					<h:inputText id="nombre"
+						value="#{especialidadListaBean.especialidad.nombre}"
+						maxlength="100" size="50" />
+					
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+					action="#{especialidadListaBean.consultar}" reRender="resultados" />
+				<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+					action="#{especialidadListaBean.limpiar}"
+					reRender="especialidad,resultados" />
+			</h:panelGroup>
+
+			<rich:panel id="resultados" styleClass="results">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText
+							value="#{msg['jsp.lbl.resultados']} (#{especialidadListaBean.numeroResultados})" />
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+						rendered="#{empty especialidadListaBean.especialidades}"
+						styleClass="textosenfranjaazul" />
+
+					<rich:dataTable id="tablaEspecialidad" var="especialidad"
+						value="#{especialidadListaBean.especialidades}"
+						rendered="#{not empty especialidadListaBean.especialidades}"
+						rows="10">
+						<rich:column sortBy="#{especialidad.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+							</f:facet>
+							<h:outputText id="nombre" value="#{especialidad.nombre}" />
+						</rich:column>
+
+						<rich:column sortBy="#{especialidad.ctlEstado}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.ctlEstado']}" />
+							</f:facet>
+							<h:outputText id="estado"
+								value="${especialidad.ctlEstado == 1 ? msg['jsp.lbl.ctlEstado.activo'] : msg['jsp.lbl.ctlEstado.inactivo']}" />
+						</rich:column>
+						<rich:column styleClass="action">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.accion']}" />
+							</f:facet>
+							<a:commandButton id="ver" action="#{especialidadListaBean.ver}"
+								image="/tema/imagen/ver.bmp">
+								<f:setPropertyActionListener value="#{especialidad}"
+									target="#{especialidadListaBean.especialidadSeleccionado}" />
+							</a:commandButton>
+							<a:commandButton id="editar"
+								action="#{especialidadListaBean.editar}"
+								image="/tema/imagen/editar.png">
+								<f:setPropertyActionListener value="#{especialidad}"
+									target="#{especialidadListaBean.especialidadSeleccionado}" />
+							</a:commandButton>
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:datascroller id="paginadorEspecialidad"
+						for="tablaEspecialidad" renderIfSinglePage="false" />
+				</h:panelGroup>
+			</rich:panel>
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="crear"
+					value="#{msg['jsp.especialidad.crearEspecialidad']}"
+					action="#{especialidadListaBean.crear}" />
+			</h:panelGroup>
+		</a:form>
+	</ui:define>
+</ui:composition>

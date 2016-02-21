@@ -1,0 +1,53 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<f:facet name="label">
+		<h:panelGroup>
+			<h:outputText value="#{msg['jsp.metodologia.notificaciones']}" />
+		</h:panelGroup>
+	</f:facet>
+
+	<h:outputText value="#{msg['jsp.metodologia.noNotificaciones']}"
+		rendered="#{empty metodologiaBean.actividad.notificaciones}" />
+
+	<rich:dataTable id="tablaNotificaciones" var="notificacion"
+		value="#{metodologiaBean.actividad.notificaciones}"
+		rendered="#{not empty metodologiaBean.actividad.notificaciones}">
+
+		<rich:column >
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+			</f:facet>
+			<h:outputText id="nombre" value="#{notificacion.nombre}" />
+		</rich:column>
+
+		<rich:column styleClass="action">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.accion']}" />
+			</f:facet>
+			<a:commandButton id="borrar" reRender="dependencias"
+				action="#{metodologiaBean.eliminarNotificacion}"
+				image="/tema/imagen/borrar.png">
+				<f:setPropertyActionListener value="#{notificacion}"
+					target="#{metodologiaBean.notificacion}" />
+			</a:commandButton>
+		</rich:column>
+	</rich:dataTable>
+	<h:panelGroup styleClass="actionButtons" layout="block">
+		<a:commandButton ajaxSingle="true" id="agregarNotificacion"
+			action="#{metodologiaBean.limpiarProceso}"
+			oncomplete="Richfaces.showModalPanel('modalNotificacion');"
+			value="#{msg['jsp.metodologia.adicionarNotificacion']}" reRender="modalNotificacion">
+		</a:commandButton>
+		<rich:toolTip for="agregarNotificacion"
+			value="#{msg['jsp.metodologia.adicionarNotificacion']}" />
+	</h:panelGroup>
+
+</ui:composition>

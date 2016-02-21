@@ -1,0 +1,57 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:tabPanel id="dependencias" switchType="ajax">
+		<rich:tab id="festivosCalendario">
+			<f:facet name="label">
+				<h:panelGroup>
+					<h:outputText value="#{msg['jsp.calendario.festivosCalendario']}" />
+				</h:panelGroup>
+			</f:facet>
+
+			<h:outputText value="#{msg['jsp.calendario.noFestivosCalendario']}"
+				rendered="#{empty calendarioBean.calendario.festivos}" />
+
+			<rich:dataTable id="tablaFestivos" var="festivo"
+				value="#{calendarioBean.calendario.festivos}"
+				rendered="#{not empty calendarioBean.calendario.festivos}">
+
+				<rich:column sortBy="#{festivo.fecha}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.fecha']}" />
+					</f:facet>
+					<h:outputText id="fecha" value="#{festivo.fecha}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</rich:column>
+
+				<rich:column sortBy="#{festivo.motivo}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.motivo']}" />
+					</f:facet>
+					<h:outputText id="motivo" value="#{festivo.razon}">
+					</h:outputText>
+				</rich:column>
+
+				<rich:column styleClass="action">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.accion']}" />
+					</f:facet>
+					<a:commandLink id="ver" value="#{msg['jsp.btn.borrar']}"
+						action="#{calendarioBean.eliminarFestivo}" immediate="true">
+						<f:setPropertyActionListener value="#{festivo}"
+							target="#{calendarioBean.festivo}" />
+					</a:commandLink>
+				</rich:column>
+
+			</rich:dataTable>
+		</rich:tab>
+	</rich:tabPanel>
+</ui:composition>

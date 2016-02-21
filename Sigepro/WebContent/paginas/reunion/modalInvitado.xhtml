@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+<rich:modalPanel id="modalInvitado" height="350" width="600"
+	showWhenRendered="#{reunionBean.renderModalInvitados}">
+	<h:form id="seleccionInvitadoForm" prependId="false">
+
+		<rich:panel id="panelListadoinvitados">
+			
+			<rich:panel id="resultadosInvitados" styleClass="results">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText
+							value="#{msg['jsp.lbl.resultados']} (#{reunionBean.numeroResultados})" />
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+						rendered="#{empty reunionBean.personas}"
+						styleClass="textosenfranjaazul" />
+
+					<rich:dataTable id="tablaPersona" var="persona"
+						value="#{reunionBean.personas}"
+						rendered="#{not empty reunionBean.personas}" rows="10">
+						<rich:column sortBy="#{persona.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+							</f:facet>
+							<h:outputText id="nombre" value="#{persona.nombre}" />
+						</rich:column>
+
+						<rich:column sortBy="#{persona.apellido}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.apellido']}" />
+							</f:facet>
+							<h:outputText id="apellido" value="#{persona.apellido}" />
+						</rich:column>
+
+						<rich:column sortBy="#{persona.login}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.login']}" />
+							</f:facet>
+							<h:outputText id="login" value="#{persona.login}" />
+						</rich:column>
+
+						<rich:column sortBy="#{persona.correo}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.correo']}" />
+							</f:facet>
+							<h:outputText id="correo" value="#{persona.correo}" />
+						</rich:column>
+
+						<rich:column styleClass="action">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.accion']}" />
+							</f:facet>
+							<a:commandButton id="ver" action="#{reunionBean.seleccionar}"
+								image="/tema/imagen/check.png" reRender="tablainvitado,modalInvitado,resultados">
+								<f:setPropertyActionListener value="#{persona}"
+									target="#{reunionBean.persona}" />
+							</a:commandButton>							
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:datascroller id="paginadorPersona" for="tablaPersona"
+						renderIfSinglePage="false" />
+				</h:panelGroup>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="botonVolverModal"
+					value="#{msg['jsp.btn.volver']}" action="#{reunionBean.cancelar}"
+					immediate="true" 
+					oncomplete="Richfaces.hideModalPanel('modalInvitado');return false;" reRender="modalInvitado,tablainvitado" />
+			</h:panelGroup>
+		</rich:panel>
+	</h:form>
+</rich:modalPanel>
+</html>

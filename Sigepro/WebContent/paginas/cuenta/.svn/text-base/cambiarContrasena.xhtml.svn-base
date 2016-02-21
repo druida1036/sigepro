@@ -1,0 +1,50 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+
+	<ui:define name="body">
+		<a:form id="cambiarContrasenaForm" styleClass="edit"
+			prependId="false">
+			<rich:panel id="panelcuenta">
+				<f:facet name="header">
+				<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.cuenta.cambioContrasenia']}" />
+					</h:panelGrid>
+				</f:facet>
+					<h:panelGrid id="cambioContrasena" columns="2">
+						<h:outputLabel for="Contrasena"
+							value="#{msg['jsp.login.clave']}:" styleClass="requerido"
+							style="width: 150px;" />
+						<h:inputSecret id="Contrasena"
+							value="#{cambiarContraseniaBean.clave}" required="true" />
+
+						<h:outputLabel for="NuevaContrasena"
+							value="#{msg['jsp.cuenta.nuevaContrasenia']}:"
+							styleClass="requerido" />
+						<h:inputSecret id="NuevaContrasena"
+							value="#{cambiarContraseniaBean.nuevaClave}" required="true" />
+
+						<h:outputLabel for="ConfirmeContrasenia"
+							value="#{msg['jsp.cuenta.confirmeContrasenia']}:"
+							styleClass="requerido" />
+						<h:inputSecret id="ConfirmeContrasenia"
+							value="#{cambiarContraseniaBean.confirmaClave}" required="true" />
+					</h:panelGrid>
+			
+			</rich:panel>
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="guardar" value="#{msg['jsp.lbl.guardar']}"
+					action="#{cambiarContraseniaBean.guardar}" />
+				<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+					action="#{cambiarContraseniaBean.cancelar}" immediate="true" />
+			</h:panelGroup>
+		</a:form>
+	</ui:define>
+</ui:composition>

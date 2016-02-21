@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="0.9090909090909093"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="128"/>
+	<subDataset name="datasource">
+		<parameter name="idMetodologia" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[$P{idMetodologia}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select to_char(a.fecha_inicio, 'YYYY-MM') mes,
+     avg(a.duracionreal - a.duracion) retraso,
+     max(a.duracionreal - a.duracion) max_retraso,
+     min(a.duracionreal - a.duracion) min_retraso
+from actividades a,
+     Metodologia metodologi1_,
+     Categoria categoria2_,
+     procesos proceso3_
+where categoria2_.metodologia_id = metodologi1_.id and
+      proceso3_.categoria_id = categoria2_.id and
+      a.procesos_id = proceso3_.id and
+      metodologi1_.id = $P{idMetodologia}
+group by mes order by mes]]>
+		</queryString>
+		<field name="mes" class="java.lang.String"/>
+		<field name="retraso" class="java.math.BigDecimal"/>
+		<field name="max_retraso" class="java.lang.Integer"/>
+		<field name="min_retraso" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="nombreProyecto" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="idMetodologia" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombreDirector" class="java.lang.String"/>
+	<parameter name="logoAliaddos" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Jorge Martinez\\Downloads\\iconos\\aliaddos.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="backAliaddos" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Jorge Martinez\\Downloads\\iconos\\backAliaddos.png"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select to_char(a.fecha_inicio, 'YYYY-MM') mes,
+     avg(a.duracionreal - a.duracion) retraso,
+     max(a.duracionreal - a.duracion) max_retraso,
+     min(a.duracionreal - a.duracion) min_retraso
+from actividades a,
+     Metodologia metodologi1_,
+     Categoria categoria2_,
+     procesos proceso3_
+where categoria2_.metodologia_id = metodologi1_.id and
+      proceso3_.categoria_id = categoria2_.id and
+      a.procesos_id = proceso3_.id and
+      metodologi1_.id = $P{idMetodologia}
+group by mes order by mes]]>
+	</queryString>
+	<field name="mes" class="java.lang.String"/>
+	<field name="retraso" class="java.math.BigDecimal"/>
+	<field name="max_retraso" class="java.lang.Integer"/>
+	<field name="min_retraso" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement x="226" y="14" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIGEPRO]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="19" y="51" width="511" height="34"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="37" y="59" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nombreProyecto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="59" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="393" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="19" y="0" width="155" height="39"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{logoAliaddos}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="165" y="24" width="77" height="20"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Developed by]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="95" y="4" width="361" height="20"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Copyright © - 2010 ALIADDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="24" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Strategic Allies]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="557" splitType="Stretch">
+			<textField>
+				<reportElement x="74" y="537" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nombreDirector}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="19" y="532" width="155" height="1"/>
+			</line>
+			<image>
+				<reportElement x="65" y="68" width="425" height="420"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{backAliaddos}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="19" y="536" width="52" height="20"/>
+				<textElement/>
+				<text><![CDATA[Director]]></text>
+			</staticText>
+			<lineChart>
+				<chart>
+					<reportElement x="87" y="58" width="381" height="185"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Promedio retrasos pos Meses"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}.toString()]]></categoryExpression>
+						<valueExpression><![CDATA[$F{retraso}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Maximos retrasos por mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{max_retraso}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Minimos retrasos por mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{min_retraso}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont/>
+							<tickLabelFont/>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont/>
+							<tickLabelFont/>
+						</axisFormat>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</summary>
+</jasperReport>

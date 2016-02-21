@@ -1,0 +1,105 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="reunionForm">
+			<rich:panel id="panelReunion">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.reunion.detalleReunion']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGrid columns="2" styleClass="franjazul-2Col"
+					columnClasses="name,detalle">
+					<h:outputLabel for="asunto" value="#{msg['jsp.reunion.asunto']}:" />
+					<h:outputText id="asunto" value="#{reunionBean.reunion.asunto}"
+						size="50" maxlength="100" />
+					<h:outputLabel for="descripcion"
+						value="#{msg['jsp.lbl.descripcion']}:" />
+					<h:outputText id="descripcion"
+						value="#{reunionBean.reunion.descripcion}" required="true"
+						size="50" maxlength="100" />
+					<h:outputLabel for="fecha" value="#{msg['jsp.reunion.fecha']}:" />
+					<h:outputText id="fecha" value="#{reunionBean.reunion.fecha}"
+						required="true" size="50" maxlength="100">
+						<f:convertDateTime pattern="dd.MM.yyyy" />
+					</h:outputText>
+					<h:outputLabel for="hora" value="#{msg['jsp.reunion.hora']}:" />
+					<h:outputText id="hora" value="#{reunionBean.reunion.fecha}"
+						required="true" size="50" maxlength="100">
+						<f:convertDateTime pattern="HH:mm" />
+					</h:outputText>
+					<h:outputLabel for="lugar" value="#{msg['jsp.reunion.lugar']}:" />
+					<h:outputText id="lugar" value="#{reunionBean.reunion.lugar}"
+						required="true" size="50" maxlength="15">
+					</h:outputText>
+					<h:outputLabel for="ip" value="#{msg['jsp.lbl.ctlIp']}:" />
+					<h:outputText id="ip" value="#{reunionBean.reunion.ctlIp}" />
+					<h:outputLabel for="Modificador"
+						value="#{msg['jsp.lbl.ctlUsuario']}:" />
+					<h:outputText id="Modificador"
+						value="#{reunionBean.reunion.ctlUsuario}" />
+					<h:outputLabel for="Modificacion"
+						value="#{msg['jsp.lbl.ctlFecMod']}:" />
+					<h:outputText id="Modificacion"
+						value="#{reunionBean.reunion.ctlFecMod}" />
+					<h:outputLabel for="creacion" value="#{msg['jsp.lbl.ctlFecAlta']}:" />
+					<h:outputText id="creacion"
+						value="#{reunionBean.reunion.ctlFecAlta}" />
+					<h:outputLabel for="Estado" value="#{msg['jsp.lbl.ctlEstado']}:" />
+					<h:outputText id="Estado"
+						value="${reunionBean.reunion.ctlEstado == 1 ? msg['jsp.lbl.ctlEstado.activo'] : msg['jsp.lbl.ctlEstado.inactivo']}" />
+				</h:panelGrid>
+				<rich:panel id="resultados" styleClass="results">
+					<f:facet name="header">
+						<h:panelGrid columns="2" width="100%">
+							<h:outputText value="#{msg['jsp.reunion.invitados']} " />
+						</h:panelGrid>
+					</f:facet>
+
+					<h:panelGroup layout="block">
+						<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+							rendered="#{empty reunionBean.reunion.personas}"
+							styleClass="textosenfranjaazul" />
+
+						<rich:dataTable id="tablainvitado" var="invitado"
+							value="#{reunionBean.reunion.personas}"
+							rendered="#{not empty reunionBean.reunion.personas}" rows="10">
+							<rich:column sortBy="#{invitado.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+								</f:facet>
+								<h:outputText id="nombre" value="#{invitado.nombre}" />
+							</rich:column>
+
+							<rich:column sortBy="#{invitado.apellido}">
+								<f:facet name="header">
+									<h:outputText value="#{msg['jsp.lbl.apellido']}" />
+								</f:facet>
+								<h:outputText id="apellido" value="#{invitado.apellido}" />
+							</rich:column>
+						</rich:dataTable>
+
+						<rich:datascroller id="paginadorinvitado" for="tablainvitado"
+							renderIfSinglePage="false" />
+					</h:panelGroup>
+				</rich:panel>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="editar" value="#{msg['jsp.btn.editar']}"
+					action="#{reunionBean.editarInicializar}" />
+				<a:commandButton id="aceptar" value="#{msg['jsp.btn.aceptar']}"
+					action="#{reunionBean.verAceptar}" />
+			</h:panelGroup>
+
+		</a:form>
+	</ui:define>
+</ui:composition>

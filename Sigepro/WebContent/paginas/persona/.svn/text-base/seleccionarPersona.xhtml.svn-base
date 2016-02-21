@@ -1,0 +1,102 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:simpleTogglePanel id="persona"
+		label="#{msg['jsp.persona.consulta']}" switchType="ajax">
+
+		<h:panelGrid columns="2">
+			<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}: " />
+			<h:inputText id="nombre" value="#{personaListaBean.persona.nombre}"
+				maxlength="100" size="50" />
+
+			<h:outputLabel for="apellido" value="#{msg['jsp.lbl.apellido']}: " />
+			<h:inputText id="apellido"
+				value="#{personaListaBean.persona.apellido}" maxlength="100"
+				size="50" />
+
+			<h:outputLabel for="login" value="#{msg['jsp.lbl.login']}: " />
+			<h:inputText id="login" value="#{personaListaBean.persona.login}"
+				maxlength="100" size="50" />
+
+			<h:outputLabel for="mail" value="#{msg['jsp.lbl.correo']}: " />
+			<h:inputText id="mail" value="#{personaListaBean.persona.correo}"
+				maxlength="100" size="50" />
+		</h:panelGrid>
+	</rich:simpleTogglePanel>
+
+	<h:panelGroup styleClass="actionButtons" layout="block">
+		<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+			action="#{personaListaBean.consultar}" reRender="resultados" />
+		<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+			action="#{personaListaBean.limpiar}" reRender="persona,resultados" />
+	</h:panelGroup>
+
+	<rich:panel id="resultados" styleClass="results">
+		<f:facet name="header">
+			<h:panelGrid columns="2" width="100%">
+				<h:outputText
+					value="#{msg['jsp.lbl.resultados']} (#{personaListaBean.numeroResultados})" />
+			</h:panelGrid>
+		</f:facet>
+
+		<h:panelGroup layout="block">
+			<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+				rendered="#{empty personaListaBean.personas}"
+				styleClass="textosenfranjaazul" />
+
+			<rich:dataTable id="tablaPersona" var="persona"
+				value="#{personaListaBean.personas}"
+				rendered="#{not empty personaListaBean.personas}" rows="4">
+				<rich:column sortBy="#{persona.nombre}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+					</f:facet>
+					<h:outputText id="nombre" value="#{persona.nombre}" />
+				</rich:column>
+
+				<rich:column sortBy="#{persona.apellido}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.apellido']}" />
+					</f:facet>
+					<h:outputText id="apellido" value="#{persona.apellido}" />
+				</rich:column>
+
+				<rich:column sortBy="#{persona.login}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.login']}" />
+					</f:facet>
+					<h:outputText id="login" value="#{persona.login}" />
+				</rich:column>
+
+				<rich:column sortBy="#{persona.correo}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.correo']}" />
+					</f:facet>
+					<h:outputText id="correo" value="#{persona.correo}" />
+				</rich:column>
+
+				<rich:column styleClass="action">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.accion']}" />
+					</f:facet>
+					<a:commandLink id="ver" value="#{msg['jsp.btn.seleccionar']}"
+						reRender="recursoForm"
+						action="#{personaListaBean.agregarPersonaRecurso}"
+						oncomplete="Richfaces.hideModalPanel('modalUsuario');return false;">
+						<f:setPropertyActionListener value="#{persona}"
+							target="#{personaListaBean.personaSeleccionado}" />
+					</a:commandLink>
+				</rich:column>
+			</rich:dataTable>
+
+			<rich:datascroller id="paginadorPersona" for="tablaPersona"
+				renderIfSinglePage="false" />
+		</h:panelGroup>
+	</rich:panel>
+</ui:composition>

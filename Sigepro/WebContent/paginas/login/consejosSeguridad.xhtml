@@ -1,0 +1,35 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/templateLogin.xhtml">
+
+	<ui:define name="body">
+		<a:form id="consejosSeguridadForm">
+
+			<rich:panel id="resultados">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.login.btn.consejos']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGroup styleClass="franjazul-1Col" layout="block">
+					<h:panelGroup styleClass="iframe" layout="block">
+						<ui:include src="../login/consejos.html" />
+					</h:panelGroup>
+					
+					<h:panelGroup layout="block" style="padding-top:10px">
+						<a:commandButton id="volverLogin" value="#{msg['jsp.btn.volver']}"
+							action="#{ingresoBean.volverLogin}" immediate="true" />
+					</h:panelGroup>
+				</h:panelGroup>
+
+			</rich:panel>
+
+		</a:form>
+	</ui:define>
+</ui:composition>

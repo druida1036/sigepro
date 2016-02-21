@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/Sigepro/svn/!svn/ver/431/Sigepro/JavaSource/co/com/sigepro/negocio/impl
+END
+ServicioGenerico.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/Sigepro/svn/!svn/ver/342/Sigepro/JavaSource/co/com/sigepro/negocio/impl/ServicioGenerico.java
+END
+SubmenuServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/negocio/impl/SubmenuServicioImpl.java
+END
+festivoServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/305/Sigepro/JavaSource/co/com/sigepro/negocio/impl/festivoServicioImpl.java
+END
+SubsistemaServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/negocio/impl/SubsistemaServicioImpl.java
+END
+ReunionServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/364/Sigepro/JavaSource/co/com/sigepro/negocio/impl/ReunionServicioImpl.java
+END
+RecursoServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/311/Sigepro/JavaSource/co/com/sigepro/negocio/impl/RecursoServicioImpl.java
+END
+PropuestaServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/Sigepro/svn/!svn/ver/366/Sigepro/JavaSource/co/com/sigepro/negocio/impl/PropuestaServicioImpl.java
+END
+ClienteServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/305/Sigepro/JavaSource/co/com/sigepro/negocio/impl/ClienteServicioImpl.java
+END
+VariableServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/Sigepro/svn/!svn/ver/330/Sigepro/JavaSource/co/com/sigepro/negocio/impl/VariableServicioImpl.java
+END
+ActividadServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/Sigepro/svn/!svn/ver/440/Sigepro/JavaSource/co/com/sigepro/negocio/impl/ActividadServicioImpl.java
+END
+CredencialServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/negocio/impl/CredencialServicioImpl.java
+END
+CorreoServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/Sigepro/svn/!svn/ver/364/Sigepro/JavaSource/co/com/sigepro/negocio/impl/CorreoServicioImpl.java
+END
+RolPaginaAccionServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/negocio/impl/RolPaginaAccionServicioImpl.java
+END
+GanttServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/Sigepro/svn/!svn/ver/416/Sigepro/JavaSource/co/com/sigepro/negocio/impl/GanttServiceImpl.java
+END
+RolServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/Sigepro/svn/!svn/ver/305/Sigepro/JavaSource/co/com/sigepro/negocio/impl/RolServicioImpl.java
+END
+AccionServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/Sigepro/svn/!svn/ver/305/Sigepro/JavaSource/co/com/sigepro/negocio/impl/AccionServicioImpl.java
+END
+PaginaServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/negocio/impl/PaginaServicioImpl.java
+END
+HerramientaServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/Sigepro/svn/!svn/ver/305/Sigepro/JavaSource/co/com/sigepro/negocio/impl/HerramientaServicioImpl.java
+END
+CalendarioServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/Sigepro/svn/!svn/ver/305/Sigepro/JavaSource/co/com/sigepro/negocio/impl/CalendarioServicioImpl.java
+END
+MetodologiaServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/Sigepro/svn/!svn/ver/416/Sigepro/JavaSource/co/com/sigepro/negocio/impl/MetodologiaServicioImpl.java
+END
+ProyectoServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/Sigepro/svn/!svn/ver/371/Sigepro/JavaSource/co/com/sigepro/negocio/impl/ProyectoServicioImpl.java
+END
+MenuServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/Sigepro/svn/!svn/ver/321/Sigepro/JavaSource/co/com/sigepro/negocio/impl/MenuServicioImpl.java
+END
+NotificacionServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/Sigepro/svn/!svn/ver/343/Sigepro/JavaSource/co/com/sigepro/negocio/impl/NotificacionServicioImpl.java
+END
+PersonaServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/Sigepro/svn/!svn/ver/344/Sigepro/JavaSource/co/com/sigepro/negocio/impl/PersonaServicioImpl.java
+END
+EspecialidadServicioImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/Sigepro/svn/!svn/ver/289/Sigepro/JavaSource/co/com/sigepro/negocio/impl/EspecialidadServicioImpl.java
+END

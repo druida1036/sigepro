@@ -1,0 +1,95 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<h:form id="reunionForm" styleClass="edit" prependId="false">
+
+			<rich:panel id="panelReunion">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.reunion.editarReunion']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGroup styleClass="franjazul-2Col" layout="block">
+					<ui:include src="formaReunion.xhtml" />
+				</h:panelGroup>
+			</rich:panel>
+			<ui:include src="actasReunion.xhtml" />
+			<rich:panel id="resultados" styleClass="results">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText
+							value="#{msg['jsp.reunion.invitados']} (#{reunionBean.numeroInvitados})" />
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{msg['jsp.reunion.noInvitados']}"
+						rendered="#{empty reunionBean.reunion.personas}"
+						styleClass="textosenfranjaazul" />
+					<rich:dataTable id="tablainvitado" var="invitado"
+						value="#{reunionBean.reunion.personas}"
+						rendered="#{not empty reunionBean.reunion.personas}" rows="10">
+						<rich:column sortBy="#{invitado.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+							</f:facet>
+							<h:outputText id="nombre" value="#{invitado.nombre}" />
+						</rich:column>
+
+						<rich:column sortBy="#{invitado.apellido}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.apellido']}" />
+							</f:facet>
+							<h:outputText id="apellido" value="#{invitado.apellido}" />
+						</rich:column>
+
+						<rich:column styleClass="action">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.accion']}" />
+							</f:facet>
+							<a:commandButton id="borrar" action="#{reunionBean.ver}"
+								image="/tema/imagen/borrar.png">
+								<f:setPropertyActionListener value="#{reunion}"
+									target="#{reunionBean.reunioneseleccionado}" />
+							</a:commandButton>
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:datascroller id="paginadorinvitado" for="tablainvitado"
+						renderIfSinglePage="false" />
+				</h:panelGroup>
+				<br />
+				<a:commandButton id="adicionar"
+					value="#{msg['jsp.reunion.adicionar']}"
+					action="#{reunionBean.modalAbrir}"
+					reRender="modalInvitado,resultadosInvitados" />
+			</rich:panel>
+			
+			<h:panelGroup  layout="block">
+				<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+					styleClass="requeridos" style="font-size: 12px;font-weight:bold;color:#0A3D89" />
+			</h:panelGroup>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="guardar" value="#{msg['jsp.reunion.reprogramar']}"
+					action="#{reunionBean.editarAceptar}" />
+				<a:commandButton id="acta" value="#{msg['jsp.lbl.acta']}"
+					oncomplete="#{rich:component('modalActa')}.show()"
+					action="#{reunionBean.limpiarActa}"
+					reRender="modalActa" />
+				<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+					action="#{reunionBean.crearCancelar}" immediate="true" />
+			</h:panelGroup>
+		</h:form>
+		<ui:include src="modalActa.xhtml" />
+		<ui:include src="modalInvitado.xhtml" />
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,76 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<f:facet name="label">
+		<h:panelGroup>
+			<h:outputText value="#{msg['jsp.metodologia.procesos']}" />
+		</h:panelGroup>
+	</f:facet>
+
+	<h:outputText value="#{msg['jsp.metodologia.noProcesos']}"
+		rendered="#{empty metodologiaBean.categoria.procesos}" />
+
+	<rich:dataTable id="tablaCategorias" var="proceso"
+		value="#{metodologiaBean.categoria.procesos}"
+		rendered="#{not empty metodologiaBean.categoria.procesos}" rows="5">
+
+		<rich:column sortBy="#{proceso.nombre}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+			</f:facet>
+			<h:outputText id="nombre" value="#{proceso.nombre}" />
+		</rich:column>
+
+		<rich:column sortBy="#{proceso.descripcion}" width="350px">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.descripcion']}" />
+			</f:facet>
+			<h:outputText id="descripcion" value="#{proceso.descripcion}"
+				styleClass="descripcion" converter="descripcionCorta" />
+			<rich:toolTip for="descripcion">
+				<h:inputTextarea id="Descripcion" value="#{proceso.descripcion}"
+					rows="5" cols="40" disabled="true"></h:inputTextarea>
+			</rich:toolTip>	
+		</rich:column>
+		
+		<rich:column sortBy="#{actividad.orden}"
+			rendered="#{metodologiaBean.vistaMetodologia == 'E'}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.avance']}" />
+			</f:facet>
+			<h:inputText id="avance" value="#{proceso.avance}" size="3"
+				disabled="true">
+			</h:inputText>
+		</rich:column>
+
+		<rich:column styleClass="action">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.accion']}" />
+			</f:facet>
+			<a:commandButton id="borrar" reRender="arbolMetodologia,panelTrabajo"
+				action="#{metodologiaBean.eliminarProceso}"
+				image="/tema/imagen/borrar.png">
+				<f:setPropertyActionListener value="#{proceso}"
+					target="#{metodologiaBean.proceso}" />
+			</a:commandButton>
+		</rich:column>
+	</rich:dataTable>
+	<rich:datascroller id="paginadorProceso" for="tablaCategorias"
+		renderIfSinglePage="false" />
+	<h:panelGroup styleClass="actionButtons" layout="block">
+		<a:commandButton ajaxSingle="true" id="agregarProceso"
+			action="#{metodologiaBean.limpiarProceso}"
+			oncomplete="#{rich:component('modalProceso')}.show()"
+			reRender="modalProceso" value="Agregar Proceso">
+		</a:commandButton>
+		<rich:toolTip for="agregarProceso" value="Agregar un Proceso" />
+	</h:panelGroup>
+
+</ui:composition>

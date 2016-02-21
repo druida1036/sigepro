@@ -1,0 +1,120 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="recursoForm">
+
+			<rich:simpleTogglePanel id="recurso"
+				label="#{msg['jsp.recurso.consulta']}" switchType="ajax">
+
+				<h:panelGrid columns="2">
+					<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}: " />
+					<h:inputText id="nombre"
+						value="#{recursoListaBean.recurso.usuario.nombre}" maxlength="100"
+						size="50" />
+
+					<h:outputLabel for="apellido" value="#{msg['jsp.lbl.apellido']}: " />
+					<h:inputText id="apellido"
+						value="#{recursoListaBean.recurso.usuario.apellido}"
+						maxlength="100" size="50" />
+
+					<h:outputLabel for="login" value="#{msg['jsp.lbl.login']}: " />
+					<h:inputText id="login"
+						value="#{recursoListaBean.recurso.usuario.login}" maxlength="100"
+						size="50" />
+
+					<h:outputLabel for="mail" value="#{msg['jsp.lbl.correo']}: " />
+					<h:inputText id="mail"
+						value="#{recursoListaBean.recurso.usuario.correo}" maxlength="100"
+						size="50" />
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+					action="#{recursoListaBean.consultar}" reRender="resultados" />
+				<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+					action="#{recursoListaBean.limpiar}" reRender="recurso,resultados" />
+			</h:panelGroup>
+
+			<rich:panel id="resultados" styleClass="results">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText
+							value="#{msg['jsp.lbl.resultados']} (#{recursoListaBean.numeroResultados})" />
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+						rendered="#{empty recursoListaBean.recursos}"
+						styleClass="textosenfranjaazul" />
+
+					<rich:dataTable id="tablaRecurso" var="recurso"
+						value="#{recursoListaBean.recursos}"
+						rendered="#{not empty recursoListaBean.recursos}" rows="10">
+						<rich:column sortBy="#{recurso.usuario.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+							</f:facet>
+							<h:outputText id="nombre" value="#{recurso.usuario.nombre}" />
+						</rich:column>
+
+						<rich:column sortBy="#{recurso.usuario.apellido}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.apellido']}" />
+							</f:facet>
+							<h:outputText id="apellido" value="#{recurso.usuario.apellido}" />
+						</rich:column>
+
+						<rich:column sortBy="#{recurso.usuario.login}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.login']}" />
+							</f:facet>
+							<h:outputText id="login" value="#{recurso.usuario.login}" />
+						</rich:column>
+
+						<rich:column sortBy="#{recurso.usuario.correo}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.correo']}" />
+							</f:facet>
+							<h:outputText id="correo" value="#{recurso.usuario.correo}" />
+						</rich:column>
+
+						<rich:column styleClass="action">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.accion']}" />
+							</f:facet>
+							<a:commandButton id="ver" action="#{recursoListaBean.ver}"
+								image="/tema/imagen/ver.bmp">
+								<f:setPropertyActionListener value="#{recurso}"
+									target="#{recursoListaBean.recursoSeleccionado}" />
+							</a:commandButton>
+							<a:commandButton id="editar" action="#{recursoListaBean.editar}"
+								image="/tema/imagen/editar.png">
+								<f:setPropertyActionListener value="#{recurso}"
+									target="#{recursoListaBean.recursoSeleccionado}" />
+							</a:commandButton>
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:datascroller id="paginadorRecurso" for="tablaRecurso"
+						renderIfSinglePage="false" />
+				</h:panelGroup>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="crear"
+					value="#{msg['jsp.recurso.crearRecurso']}"
+					action="#{recursoListaBean.crear}" />
+			</h:panelGroup>
+		</a:form>
+	</ui:define>
+</ui:composition>

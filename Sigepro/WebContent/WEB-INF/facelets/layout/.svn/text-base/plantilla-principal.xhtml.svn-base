@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><h:outputText value="#{msg['jsp.aplicacion.titulo']}" /></title>
+<link rel="shortcut icon"
+	href="#{facesContext.externalContext.requestContextPath}/favicon.ico" />
+<a:loadScript src="/scripts/scripts.js" />
+<a:loadStyle src="/tema/css/tema.css" />
+<a:loadStyle src="/tema/css/elementos.css" />
+<ui:insert name="head" />
+</head>
+<body>
+
+
+<h:panelGroup id="contenedor" styleClass="contenedor" layout="block">
+
+	<h:panelGroup id="central" styleClass="central" layout="block">
+
+		<f:subview id="header">
+			<h:panelGroup id="cabezote" styleClass="header" layout="block">
+				<ui:include src="header.xhtml" />
+			</h:panelGroup>
+		</f:subview>
+
+		<f:subview id="menu">
+			<h:panelGroup id="franjamenu" layout="block" styleClass="menu">
+				<ui:include src="menu.xhtml" />
+			</h:panelGroup>
+		</f:subview>
+
+
+		<a:outputPanel id="messages" styleClass="messages" ajaxRendered="true">
+			<h:messages id="messagesTable" layout="table" showDetail="false"
+				showSummary="true" errorClass="errorMessage" infoClass="infoMessage"
+				warnClass="warnMessage" />
+			<f:verbatim>
+				<script>
+				if(document.getElementById('messagesTable') != null){
+					scrollTo(0,0); 
+				}
+				</script>
+			</f:verbatim>
+		</a:outputPanel>
+
+		<ui:insert name="body" />
+
+
+		<a:log></a:log>
+		<center><h:panelGroup id="piedepagina"
+			styleClass="piedepagina" layout="block">
+			<h:form>
+				<h:panelGroup styleClass="footer" layout="block">
+					<h:outputText value="#{msg['jsp.footer.derechos']}" />
+					<br />
+					<h:commandLink value="#{msg['jsp.footer.privacidadCondiciones']}"
+						action="irPrivacidadCondiciones" />
+					<h:commandLink style="padding-left:10px"
+						value="#{msg['jsp.footer.finalizar.sesion']}"
+						action="#{ingresoBean.cerrarSesion}"
+						rendered="#{ingresoBean.iniciaSesion}" immediate="true" />
+					<br />
+					<div align="center"><h:outputLabel id="versionaplcion"
+						value="#{msg['jsp.version']}" styleClass="footer" /></div>
+				</h:panelGroup>
+			</h:form>
+		</h:panelGroup></center>
+		<a:status>
+			<f:facet name="start">
+				<h:panelGroup styleClass="ajaxStatus">
+					<h:panelGroup styleClass="container" layout="block">
+						<h:panelGroup styleClass="mask" layout="block" />
+						<h:panelGroup styleClass="content" layout="block" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:facet>
+		</a:status>
+
+
+	</h:panelGroup>
+
+</h:panelGroup>
+<ui:include src="modalSubsistema.xhtml" />
+</body>
+</html>

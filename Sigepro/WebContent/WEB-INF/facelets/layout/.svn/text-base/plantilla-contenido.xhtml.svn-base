@@ -1,0 +1,14 @@
+
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<div class="main-header">
+	<h3><ui:insert name="pageName" /></h3>
+	</div>
+
+	<div class="page-container-header"><ui:insert name="pageContent" />
+	</div>
+
+
+</ui:composition>
+

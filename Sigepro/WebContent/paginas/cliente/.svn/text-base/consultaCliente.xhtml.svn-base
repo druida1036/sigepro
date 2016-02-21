@@ -1,0 +1,99 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+
+		<a:form id="clienteForm">
+
+			<rich:simpleTogglePanel id="cliente"
+				label="#{msg['jsp.cliente.consulta']}" switchType="ajax">
+
+				<h:panelGrid columns="2">
+					<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}: " />
+					<h:inputText id="nombre" value="#{clienteListaBean.cliente.nombre}"
+						maxlength="100" size="50" />
+
+
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+					action="#{clienteListaBean.consultar}" reRender="resultados" />
+				<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+					action="#{clienteListaBean.limpiar}" reRender="cliente,resultados" />
+			</h:panelGroup>
+
+			<rich:panel id="resultados" styleClass="results">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText
+							value="#{msg['jsp.lbl.resultados']} (#{clienteListaBean.numeroResultados})" />
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+						rendered="#{empty clienteListaBean.clientes}"
+						styleClass="textosenfranjaazul" />
+
+					<rich:dataTable id="tablaCliente" var="cliente"
+						value="#{clienteListaBean.clientes}"
+						rendered="#{not empty clienteListaBean.clientes}" rows="10">
+						<rich:column sortBy="#{cliente.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+							</f:facet>
+							<h:outputText id="nombre" value="#{cliente.nombre}" />
+						</rich:column>
+
+						<rich:column sortBy="#{cliente.direccion}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.direccion']}" />
+							</f:facet>
+							<h:outputText id="direccion" value="#{cliente.direccion}" />
+						</rich:column>
+						<rich:column sortBy="#{cliente.telefono}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.telefono']}" />
+							</f:facet>
+							<h:outputText id="telefono" value="#{cliente.telefono}" />
+						</rich:column>
+
+						<rich:column styleClass="action">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.accion']}" />
+							</f:facet>
+							<a:commandButton id="ver" action="#{clienteListaBean.ver}"
+								image="/tema/imagen/ver.bmp">
+								<f:setPropertyActionListener value="#{cliente}"
+									target="#{clienteListaBean.cliente}" />
+							</a:commandButton>
+							<a:commandButton id="editar" action="#{clienteListaBean.editar}"
+								image="/tema/imagen/editar.png">
+								<f:setPropertyActionListener value="#{cliente}"
+									target="#{clienteListaBean.cliente}" />
+							</a:commandButton>
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:datascroller id="paginadorCliente" for="tablaCliente"
+						renderIfSinglePage="false" />
+				</h:panelGroup>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="crear"
+					value="#{msg['jsp.cliente.crearCliente']}"
+					action="#{clienteListaBean.crear}" />
+			</h:panelGroup>
+		</a:form>
+	</ui:define>
+</ui:composition>

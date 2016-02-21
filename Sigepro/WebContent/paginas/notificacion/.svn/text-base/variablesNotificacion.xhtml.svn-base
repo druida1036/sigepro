@@ -1,0 +1,63 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:tabPanel id="dependencias" switchType="ajax">
+		<rich:tab id="variablesNotificacion">
+			<f:facet name="label">
+				<h:panelGroup>
+					<h:outputText
+						value="#{msg['jsp.notificacion.variablesNotificacion']}" />
+				</h:panelGroup>
+			</f:facet>
+
+			<h:outputText
+				value="#{msg['jsp.notificacion.noVariablesNotificacion']}"
+				rendered="#{empty notificacionBean.variablesNotificacion}" />
+
+			<rich:dataTable id="tablaVariablesNotificacion"
+				var="variableNotificacion"
+				value="#{notificacionBean.variablesNotificacion}"
+				rendered="#{not empty notificacionBean.variablesNotificacion}">
+
+				<rich:column sortBy="#{variableNotificacion.nombre}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+					</f:facet>
+					<h:outputText id="nombre" value="#{variableNotificacion.nombre}" />
+				</rich:column>
+
+				<rich:column sortBy="#{variableNotificacion.referencia}">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.referencia']}" />
+					</f:facet>
+					<h:outputText id="referencia"
+						value="#{variableNotificacion.referencia}" />
+				</rich:column>
+
+				<rich:column styleClass="action">
+					<f:facet name="header">
+						<h:outputText value="#{msg['jsp.lbl.accion']}" />
+					</f:facet>
+					<a:commandLink id="ver" value="#{msg['jsp.btn.agregar']}"
+						action="#{notificacionBean.agregarVariable}"
+						oncomplete="setCaretPosition('Descripcion', #{notificacionBean.posicionCursor});"
+						reRender="formaNotificacion">
+						<f:setPropertyActionListener value="#{variableNotificacion}"
+							target="#{notificacionBean.variableNotificacion}" />
+						<a:actionparam name="w" value="getCaretPosition('Descripcion')"
+							assignTo="#{notificacionBean.posicionCursor}" noEscape="true" />
+
+					</a:commandLink>
+				</rich:column>
+
+			</rich:dataTable>
+		</rich:tab>
+	</rich:tabPanel>
+</ui:composition>

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/Sigepro/svn/!svn/ver/416/Sigepro/WebContent/WEB-INF/facelets/layout
+END
+menu.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/Sigepro/svn/!svn/ver/326/Sigepro/WebContent/WEB-INF/facelets/layout/menu.xhtml
+END
+panel_mensajes.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/Sigepro/svn/!svn/ver/153/Sigepro/WebContent/WEB-INF/facelets/layout/panel_mensajes.xhtml
+END
+templateLogin.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/Sigepro/svn/!svn/ver/345/Sigepro/WebContent/WEB-INF/facelets/layout/templateLogin.xhtml
+END
+templateWelcome.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/Sigepro/svn/!svn/ver/355/Sigepro/WebContent/WEB-INF/facelets/layout/templateWelcome.xhtml
+END
+header.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/Sigepro/svn/!svn/ver/416/Sigepro/WebContent/WEB-INF/facelets/layout/header.xhtml
+END
+modalSubsistema.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/Sigepro/svn/!svn/ver/351/Sigepro/WebContent/WEB-INF/facelets/layout/modalSubsistema.xhtml
+END
+footer.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/Sigepro/svn/!svn/ver/416/Sigepro/WebContent/WEB-INF/facelets/layout/footer.xhtml
+END
+plantilla-principal.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/Sigepro/svn/!svn/ver/345/Sigepro/WebContent/WEB-INF/facelets/layout/plantilla-principal.xhtml
+END
+plantilla-contenido.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/Sigepro/svn/!svn/ver/416/Sigepro/WebContent/WEB-INF/facelets/layout/plantilla-contenido.xhtml
+END

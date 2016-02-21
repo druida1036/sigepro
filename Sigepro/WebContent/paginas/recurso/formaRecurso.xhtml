@@ -1,0 +1,28 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:panelGrid columns="2" columnClasses="name" id="recurso">
+		<h:outputLabel for="costo" value="#{msg['jsp.lbl.costo']}:"
+			styleClass="requerido" />
+		<h:inputText id="costo" value="#{recursoBean.recurso.costo}"
+			required="true" size="50" maxlength="100" />
+		<h:outputLabel for="disponibilidad" value="#{msg['jsp.lbl.disponibilidad']}:"
+			styleClass="requerido" />
+		<h:inputText id="disponibilidad" value="#{recursoBean.recurso.disponibilidad}"
+			required="true" size="50" maxlength="100" />
+		
+	</h:panelGrid>
+
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

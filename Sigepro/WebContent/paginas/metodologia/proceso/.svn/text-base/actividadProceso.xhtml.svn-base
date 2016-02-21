@@ -1,0 +1,76 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<f:facet name="label">
+		<h:panelGroup>
+			<h:outputText value="#{msg['jsp.metodologia.actividades']}" />
+		</h:panelGroup>
+	</f:facet>
+
+	<h:outputText value="#{msg['jsp.metodologia.noActividades']}"
+		rendered="#{empty metodologiaBean.proceso.actividades}" />
+
+	<rich:dataTable id="tablaActividades" var="actividad"
+		value="#{metodologiaBean.proceso.actividades}"
+		rendered="#{not empty metodologiaBean.proceso.actividades}" rows="5">
+
+		<rich:column sortBy="#{actividad.nombre}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+			</f:facet>
+			<h:outputText id="nombre" value="#{actividad.nombre}" />
+		</rich:column>
+
+		<rich:column sortBy="#{actividad.orden}"
+			rendered="#{metodologiaBean.vistaMetodologia == 'E'}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.avance']}" />
+			</f:facet>
+			<h:inputText id="avance" value="#{actividad.avance}" size="3"
+				disabled="true">
+			</h:inputText>
+		</rich:column>
+
+		<rich:column sortBy="#{actividad.orden}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.orden']}" />
+			</f:facet>
+			<h:inputText id="orden" value="#{actividad.orden}" size="3">
+				<a:support event="onchange" action="#{metodologiaBean.ordenar}"
+					reRender="tablaActividades,arbolMetodologia"></a:support>
+			</h:inputText>
+		</rich:column>
+
+		<rich:column styleClass="action">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.accion']}" />
+			</f:facet>
+			<a:commandButton id="borrar" reRender="arbolMetodologia,panelTrabajo"
+				action="#{metodologiaBean.eliminarActividad}"
+				image="/tema/imagen/borrar.png">
+				<f:setPropertyActionListener value="#{actividad}"
+					target="#{metodologiaBean.actividad}" />
+			</a:commandButton>
+		</rich:column>
+	</rich:dataTable>
+	<rich:datascroller id="paginadorActividades" for="tablaActividades"
+		renderIfSinglePage="false" />
+	<h:panelGroup styleClass="actionButtons" layout="block">
+		<a:commandButton ajaxSingle="true" id="agregarActiviad"
+			action="#{metodologiaBean.limpiarActividad}"
+			reRender="arbolMetodologia,panelTrabajo,modalActividad"
+			value="#{msg['jsp.metodologia.adicionarActividad']}">
+		</a:commandButton>
+		<rich:toolTip for="agregarActividad"
+			value="#{msg['jsp.metodologia.adicionarActividad']}" />
+	</h:panelGroup>
+
+</ui:composition>

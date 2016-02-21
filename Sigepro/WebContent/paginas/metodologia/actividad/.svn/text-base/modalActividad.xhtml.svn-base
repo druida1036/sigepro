@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+<rich:modalPanel id="modalActividad" autosized="true" moveable="true"
+	showWhenRendered="#{metodologiaBean.mostarModActividad}">
+	<h:form>
+		<rich:panel id="panelActividad">
+			<f:facet name="header">
+				<h:panelGrid columns="2" width="100%">
+					<h:outputText value="#{msg['jsp.metodologia.adicionarActividad']}" />
+				</h:panelGrid>
+			</f:facet>
+			<h:panelGroup styleClass="franjazul-2Col" layout="block">
+				<ui:include src="formaActividad.xhtml" />
+			</h:panelGroup>
+		</rich:panel>
+		<h:panelGroup styleClass="actionButtons" layout="block">
+			<a:jsFunction name="bodyOnload"
+				action="#{metodologiaBean.expandirNodo}" 
+				reRender="arbolMetodologia,modalActividad" />
+			<a:commandButton id="guardar" value="#{msg['jsp.lbl.guardar']}"
+				reRender="arbolMetodologia,panelTrabajo,modalActividad"
+				action="#{metodologiaBean.agregarActividades}" />
+			<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+				onclick="Richfaces.hideModalPanel('modalActividad');return false;"
+				immediate="true" />
+		</h:panelGroup>
+	</h:form>
+</rich:modalPanel>
+</html>

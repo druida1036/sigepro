@@ -1,0 +1,16 @@
+# Propiedades de Conexión al Servidor SMTP
+
+correo.ip.servidor=mail.google.com/a/aliaddos.com
+correo.servidor=smtp.gmail.com
+correo.sender.adress=jlizarazo@aliaddos.com
+correo.sender.pass=cualquiera
+correo.formato1=formato1.txt
+correo.asunto1=Registro en Chartis
+correo.formato2=formato2.txt
+correo.asunto2=Generacion de Novedad
+correo.formatoCambioClave=formatoCambioClave.txt
+correo.asuntoCambioClave=Cambio de Clave
+correo.formatoComunicacionActivacion = formatoComunicacionActivacion.txt
+correo.asuntoComunicacionActivacion=Activación de Cuenta.
+correo.ruta=plantillas
+correo.administrador=jlizarazo@gmail.com

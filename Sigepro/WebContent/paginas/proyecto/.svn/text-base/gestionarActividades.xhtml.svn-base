@@ -1,0 +1,126 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="proyectoForm" styleClass="edit" prependId="false">
+
+			<rich:panel id="panelProyecto">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.proyecto.crearProyecto']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGroup styleClass="franjazul-2Col" layout="block">
+					<rich:dataTable id="tablaActividad" var="actividad"
+						value="#{proyectoBean.actividades}"
+						rendered="#{not empty proyectoBean.actividades}"
+						binding="#{proyectoBean.tablaActividades}" rows="10">
+
+						<rich:column sortBy="#{actividad.proceso.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.proceso']}" />
+							</f:facet>
+							<h:outputText id="nombreProceso"
+								value="#{actividad.proceso.nombre}" styleClass="descripcion" />
+						</rich:column>
+						<rich:column sortBy="#{actividad.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.actividad']}" />
+							</f:facet>
+							<h:outputText id="nombre" value="#{actividad.nombre}" />
+						</rich:column>
+						<rich:column sortBy="#{actividad.fechaInicio}"
+							rendered="#{proyectoBean.vistaProyecto  == 'P'}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.fechaInicio']}" />
+							</f:facet>
+							<rich:calendar value="#{actividad.fechaInicio}" id="FechaInicio"
+								required="true" cellWidth="24px" cellHeight="22px"
+								datePattern="d/M/yyyy" style="width:150px" inputSize="12"
+								mode="ajax">
+								<!--								valueChangeListener="#{proyectoBean.calcularDifFecAct}">-->
+								<a:support event="onchanged" reRender="tablaActividad" />
+							</rich:calendar>
+						</rich:column>
+						<rich:column sortBy="#{actividad.duracion}"
+							rendered="#{proyectoBean.vistaProyecto  == 'P'}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.duracion']}" />
+							</f:facet>
+							<h:inputText id="duracion" value="#{actividad.duracion}" size="4">
+								<a:support event="onblur" reRender="tablaActividad" />
+							</h:inputText>
+						</rich:column>
+						<rich:column sortBy="#{actividad.fechaFin}"
+							rendered="#{proyectoBean.vistaProyecto  == 'P'}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.fechaFin']}" />
+							</f:facet>
+							<rich:calendar value="#{actividad.fechaFin}" id="FechaFin"
+								required="true" cellWidth="24px" cellHeight="22px"
+								datePattern="d/M/yyyy" style="width:150px" inputSize="12"
+								disabled="true">
+							</rich:calendar>
+						</rich:column>
+						<rich:column sortBy="#{actividad.fechaInicioReal}"
+							rendered="#{proyectoBean.vistaProyecto  == 'E'}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.fechaInicioReal']}" />
+							</f:facet>
+							<rich:calendar value="#{actividad.fechaInicioReal}"
+								id="FechaInicioReal" required="true" cellWidth="24px"
+								cellHeight="22px" datePattern="d/M/yyyy" style="width:150px"
+								inputSize="12" mode="ajax">
+							</rich:calendar>
+						</rich:column>
+						<rich:column sortBy="#{actividad.duracionReal}"
+							rendered="#{proyectoBean.vistaProyecto  == 'E'}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.duracionReal']}" />
+							</f:facet>
+							<h:inputText id="duracionReal" value="#{actividad.duracionReal}"
+								size="4">
+								<a:support event="onblur" reRender="tablaActividad" />
+							</h:inputText>
+						</rich:column>
+						<rich:column sortBy="#{actividad.fechaFinReal}"
+							rendered="#{proyectoBean.vistaProyecto  == 'E'}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.fechaFinReal']}" />
+							</f:facet>
+							<rich:calendar value="#{actividad.fechaFinReal}"
+								id="FechaFinReal" required="true" cellWidth="24px"
+								cellHeight="22px" datePattern="d/M/yyyy" style="width:150px"
+								inputSize="12" disabled="true">
+							</rich:calendar>
+						</rich:column>
+					</rich:dataTable>
+					<rich:datascroller id="paginadorActividades" for="tablaActividad"
+						renderIfSinglePage="false" />
+				</h:panelGroup>
+				<a:jsFunction name="ajustarFechas"
+					action="#{proyectoBean.ajustarFechaIniActividades}"
+					reRender="tablaActividad" />
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="guardar" value="#{msg['jsp.lbl.guardar']}"
+					action="#{proyectoBean.avanceActividadesEditar}" />
+				<a:commandButton id="gantt" value="#{msg['jsp.btn.gantt']}"
+					oncomplete="Richfaces.showModalPanel('modalDiagramaGantt');"
+					reRender="modalDiagramaGantt" />
+
+				<a:commandButton id="cancelar" value="#{msg['jsp.lbl.cancelar']}"
+					action="#{proyectoBean.avanceActividadesCancelar}" immediate="true" />
+			</h:panelGroup>
+		</a:form>
+		<ui:include src="modalDiagramaGantt.xhtml" />
+	</ui:define>
+</ui:composition>

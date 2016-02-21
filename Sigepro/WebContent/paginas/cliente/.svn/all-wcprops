@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/Sigepro/svn/!svn/ver/313/Sigepro/WebContent/paginas/cliente
+END
+formaCliente.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/Sigepro/svn/!svn/ver/289/Sigepro/WebContent/paginas/cliente/formaCliente.xhtml
+END
+consultaCliente.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/Sigepro/svn/!svn/ver/313/Sigepro/WebContent/paginas/cliente/consultaCliente.xhtml
+END
+editarCliente.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/Sigepro/svn/!svn/ver/200/Sigepro/WebContent/paginas/cliente/editarCliente.xhtml
+END
+detalleCliente.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/Sigepro/svn/!svn/ver/289/Sigepro/WebContent/paginas/cliente/detalleCliente.xhtml
+END
+crearCliente.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/Sigepro/svn/!svn/ver/200/Sigepro/WebContent/paginas/cliente/crearCliente.xhtml
+END

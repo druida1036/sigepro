@@ -1,0 +1,47 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<f:facet name="label">
+		<h:panelGroup>
+			<h:outputText value="#{msg['jsp.proyecto.usuarios']}" />
+		</h:panelGroup>
+	</f:facet>
+
+	
+
+	<h:outputText value="#{msg['jsp.proyecto.noUsuarios']}"
+		rendered="#{empty proyectoBean.proyecto.personas}" />
+
+	<rich:dataTable id="tablaUsuarios" var="persona"
+		value="#{proyectoBean.proyecto.personas}"
+		rendered="#{not empty proyectoBean.proyecto.personas}">
+
+		<rich:column sortBy="#{persona.nombre}">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.nombre']}" />
+			</f:facet>
+			<h:outputText id="nombre" value="#{persona.nombre}" />
+		</rich:column>
+
+
+		<rich:column styleClass="action">
+			<f:facet name="header">
+				<h:outputText value="#{msg['jsp.lbl.accion']}" />
+			</f:facet>
+			<a:commandButton id="borrar" reRender="dependencias"
+				action="#{proyectoBean.eliminarUsuario}"
+				image="/tema/imagen/borrar.png">
+				<f:setPropertyActionListener value="#{persona}"
+					target="#{proyectoBean.persona}" />
+			</a:commandButton>
+		</rich:column>
+	</rich:dataTable>
+
+</ui:composition>

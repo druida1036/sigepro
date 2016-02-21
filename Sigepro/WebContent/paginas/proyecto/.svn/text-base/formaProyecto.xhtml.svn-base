@@ -1,0 +1,81 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:panelGrid id="formaProyecto" columns="2" columnClasses="name">
+		<h:outputLabel for="Nombre" value="#{msg['jsp.lbl.nombre']}:"
+			styleClass="requerido" />
+		<h:inputText id="Nombre" value="#{proyectoBean.proyecto.nombre}"
+			required="true" size="50" maxlength="100">
+			<rich:beanValidator />
+		</h:inputText>
+		<h:outputLabel for="Descripcion"
+			value="#{msg['jsp.lbl.descripcion']}:" styleClass="requerido" />
+		<h:inputTextarea id="Descripcion"
+			value="#{proyectoBean.proyecto.descripcion}" required="true" rows="5"
+			cols="40">
+			<rich:beanValidator></rich:beanValidator>
+		</h:inputTextarea>
+		<h:outputLabel for="Director" value="#{msg['jsp.lbl.director']}:"
+			styleClass="requerido" />
+		<h:selectOneMenu id="Director"
+			value="#{proyectoBean.listadoDirectores.idSeleccionado}">
+			<f:selectItems value="#{proyectoBean.listadoDirectores.lista}"></f:selectItems>
+		</h:selectOneMenu>
+		<h:outputLabel for="Metodologia"
+			value="#{msg['jsp.lbl.metodologia']}:" styleClass="requerido" />
+		<h:selectOneMenu id="Metodologia"
+			value="#{proyectoBean.listadoMetodologias.idSeleccionado}"
+			disabled="#{proyectoBean.proyecto.id != null}">
+			<f:selectItems value="#{proyectoBean.listadoMetodologias.lista}"></f:selectItems>
+		</h:selectOneMenu>
+		<h:outputLabel for="FechaInicio"
+			value="#{msg['jsp.lbl.fechaInicio']}:" styleClass="requerido" />
+		<rich:calendar value="#{proyectoBean.proyecto.fechaInicio}"
+			id="FechaInicio" required="true" cellWidth="24px" cellHeight="22px"
+			datePattern="d/M/yyyy" style="width:150px" inputSize="12" />
+
+		<h:outputLabel for="ctlEstado" value="#{msg['jsp.lbl.ctlEstado']}:"
+			styleClass="requerido" />
+		<h:selectOneMenu id="ctlEstado"
+			value="#{proyectoBean.estadosProyecto.idSeleccionado}">
+			<f:selectItems value="#{proyectoBean.estadosProyecto.lista}"></f:selectItems>
+		</h:selectOneMenu>
+
+		<h:outputLabel for="Clientes" value="#{msg['jsp.lbl.clientes']}:"
+			styleClass="requerido" />
+		<h:selectOneMenu id="Clientes"
+			value="#{proyectoBean.listadoClientes.idSeleccionado}"
+			valueChangeListener="#{proyectoBean.actualizarUsuariosPorCliente}">
+			<f:selectItems value="#{proyectoBean.listadoClientes.lista}"></f:selectItems>
+			<a:support event="onchange" reRender="Usuarios" bypassUpdates="true"
+				ajaxSingle="true" />
+		</h:selectOneMenu>
+
+		<h:outputLabel for="Usuarios" value="#{msg['jsp.lbl.usuarios']}:"
+			styleClass="requerido" />
+		<h:panelGroup>
+			<h:selectOneMenu id="Usuarios"
+				value="#{proyectoBean.listadoUsuarios.idSeleccionado}">
+				<f:selectItems value="#{proyectoBean.listadoUsuarios.lista}"></f:selectItems>
+				<a:support event="onchange" bypassUpdates="true" ajaxSingle="true" />
+			</h:selectOneMenu>
+			<rich:spacer width="20px" />
+			<a:commandButton value="Agregar"
+				action="#{proyectoBean.agregarUsuario}" 
+				reRender="dependencias, Usuario">
+			</a:commandButton>
+		</h:panelGroup>
+	</h:panelGrid>
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

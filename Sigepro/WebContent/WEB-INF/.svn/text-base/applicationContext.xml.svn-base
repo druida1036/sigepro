@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="co.com.sigepro.*" />
+
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:co/com/sigepro/configuracion/jdbc.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="configLocation">
+			<value>classpath:co/com/sigepro/configuracion/hibernate.cfg.xml
+			</value>
+		</property>
+	</bean>
+
+	<!-- captcha -->
+	<bean id="imageCaptchaService"
+		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService" />
+
+	<!-- Configuracion General del Proxy AOP -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- Configuracion del Proxy de Transacciones -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="cargar" read-only="true" propagation="REQUIRED" />
+			<tx:method name="listado" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="*" rollback-for="Throwable" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:advisor pointcut="execution(* co.com.sigepro.negocio..*Servicio*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
+
+
+	<!-- Configuracion del Proxy de Manejo de Excepciones -->
+	<bean id="exceptionHandler" class="co.com.sigepro.excepcion.ManejadorDeExcepciones" />
+
+	<aop:config>
+		<aop:advisor
+			pointcut="execution(public java.lang.String co.com.sigepro.control..*.*())"
+			advice-ref="exceptionHandler" />
+		<aop:advisor
+			pointcut="execution(public void co.com.sigepro.control..*.*(javax.faces.event.ActionEvent))"
+			advice-ref="exceptionHandler" />
+		<aop:advisor
+			pointcut="execution(public void co.com.sigepro.control..*.*(javax.faces.event.ValueChangeEvent))"
+			advice-ref="exceptionHandler" />
+	</aop:config>
+
+
+</beans>
+ 

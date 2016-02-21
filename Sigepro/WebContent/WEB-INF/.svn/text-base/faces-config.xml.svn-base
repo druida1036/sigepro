@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+	<!-- Reglas de Navegación del menu -->
+	<navigation-rule>
+		<display-name>consulta</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>inicioCliente</from-outcome>
+			<to-view-id>/paginas/cliente/consultaCliente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioCalendario</from-outcome>
+			<to-view-id>/paginas/calendario/consultaCalendario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioEspecialidad</from-outcome>
+			<to-view-id>/paginas/especialidad/consultaEspecialidad.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioNotificacion</from-outcome>
+			<to-view-id>/paginas/notificacion/consultaNotificacion.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioUsuario</from-outcome>
+			<to-view-id>/paginas/persona/consultaPersona.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/consultaMetodologia.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioEditarMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/editarMetodologia.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioRol</from-outcome>
+			<to-view-id>/paginas/rol/consultaRol.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioProyecto</from-outcome>
+			<to-view-id>/paginas/proyecto/consultaProyecto.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioRecurso</from-outcome>
+			<to-view-id>/paginas/recurso/consultaRecurso.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>volverInicio</from-outcome>
+			<to-view-id>/paginas/bienvenida/bienvenida.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>irLogin</from-outcome>
+			<to-view-id>/paginas/login/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>gestionarActividades</from-outcome>
+			<to-view-id>/paginas/proyecto/gestionarActividades.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cambiarContrasena</from-outcome>
+			<to-view-id>/paginas/cuenta/cambiarContrasena.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleCuenta</from-outcome>
+			<to-view-id>/paginas/cuenta/detalleCuenta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioReunion</from-outcome>
+			<to-view-id>/paginas/reunion/consultaReunion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearReunion</from-outcome>
+			<to-view-id>/paginas/reunion/crearReunion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioPropuesta</from-outcome>
+			<to-view-id>/paginas/propuesta/consultaPropuesta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearPropuesta</from-outcome>
+			<to-view-id>/paginas/propuesta/crearPropuesta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicioIndicadores</from-outcome>
+			<to-view-id>/paginas/indicadores/consultaIndicadores.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Clientes -->
+	<navigation-rule>
+		<from-view-id>/paginas/cliente/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaCliente</from-outcome>
+			<to-view-id>/paginas/cliente/consultaCliente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearCliente</from-outcome>
+			<to-view-id>/paginas/cliente/crearCliente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleCliente</from-outcome>
+			<to-view-id>/paginas/cliente/detalleCliente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarCliente</from-outcome>
+			<to-view-id>/paginas/cliente/editarCliente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Notificaciones -->
+	<navigation-rule>
+		<from-view-id>/paginas/notificacion/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaNotificacion</from-outcome>
+			<to-view-id>/paginas/notificacion/consultaNotificacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleNotificacion</from-outcome>
+			<to-view-id>/paginas/notificacion/detalleNotificacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarNotificacion</from-outcome>
+			<to-view-id>/paginas/notificacion/editarNotificacion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Calendario -->
+	<navigation-rule>
+		<from-view-id>/paginas/calendario/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaCalendario</from-outcome>
+			<to-view-id>/paginas/calendario/consultaCalendario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearCalendario</from-outcome>
+			<to-view-id>/paginas/calendario/crearCalendario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleCalendario</from-outcome>
+			<to-view-id>/paginas/calendario/detalleCalendario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarCalendario</from-outcome>
+			<to-view-id>/paginas/calendario/editarCalendario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Especialidades -->
+	<navigation-rule>
+		<from-view-id>/paginas/especialidad/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaEspecialidad</from-outcome>
+			<to-view-id>/paginas/especialidad/consultaEspecialidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleEspecialidad</from-outcome>
+			<to-view-id>/paginas/especialidad/detalleEspecialidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarEspecialidad</from-outcome>
+			<to-view-id>/paginas/especialidad/editarEspecialidad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearEspecialidad</from-outcome>
+			<to-view-id>/paginas/especialidad/crearEspecialidad.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Personas -->
+	<navigation-rule>
+		<from-view-id>/paginas/persona/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaPersona</from-outcome>
+			<to-view-id>/paginas/persona/consultaPersona.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearPersona</from-outcome>
+			<to-view-id>/paginas/persona/crearPersona.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detallePersona</from-outcome>
+			<to-view-id>/paginas/persona/detallePersona.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarPersona</from-outcome>
+			<to-view-id>/paginas/persona/editarPersona.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Metodologias -->
+	<navigation-rule>
+		<from-view-id>/paginas/metodologia/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/consultaMetodologia.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/crearMetodologia.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/detalleMetologia.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/editarMetodologia.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>irEditarProyecto</from-outcome>
+			<to-view-id>/paginas/proyecto/editarProyecto.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Rol -->
+	<navigation-rule>
+		<from-view-id>/paginas/rol/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultarRol</from-outcome>
+			<to-view-id>/paginas/rol/consultaRol.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearRol</from-outcome>
+			<to-view-id>/paginas/rol/crearRol.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Proyectos -->
+	<navigation-rule>
+		<from-view-id>/paginas/proyecto/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaProyecto</from-outcome>
+			<to-view-id>/paginas/proyecto/consultaProyecto.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleProyecto</from-outcome>
+			<to-view-id>/paginas/proyecto/detalleProyecto.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarProyecto</from-outcome>
+			<to-view-id>/paginas/proyecto/editarProyecto.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearProyecto</from-outcome>
+			<to-view-id>/paginas/proyecto/crearProyecto.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cargarMetodologia</from-outcome>
+			<to-view-id>/paginas/metodologia/editarMetodologia.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Recursos -->
+	<navigation-rule>
+		<from-view-id>/paginas/recurso/*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaRecurso</from-outcome>
+			<to-view-id>/paginas/recurso/consultaRecurso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearRecurso</from-outcome>
+			<to-view-id>/paginas/recurso/crearRecurso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleRecurso</from-outcome>
+			<to-view-id>/paginas/recurso/detalleRecurso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarRecurso</from-outcome>
+			<to-view-id>/paginas/recurso/editarRecurso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de cuenta -->
+	<navigation-rule>
+		<from-view-id>/paginas/cuenta/*</from-view-id>
+		<navigation-case>
+			<from-outcome>cambiarContrasena</from-outcome>
+			<to-view-id>/paginas/cuenta/cambiarContrasena.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleCuenta</from-outcome>
+			<to-view-id>/paginas/cuenta/detalleCuenta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de reunion -->
+	<navigation-rule>
+		<from-view-id>/paginas/reunion/*</from-view-id>
+		<navigation-case>
+			<from-outcome>inicioReunion</from-outcome>
+			<to-view-id>/paginas/reunion/consultaReunion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarReunion</from-outcome>
+			<to-view-id>/paginas/reunion/editarReunion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crearReunion</from-outcome>
+			<to-view-id>/paginas/reunion/crearReunion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalleReunion</from-outcome>
+			<to-view-id>/paginas/reunion/detalleReunion.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- Reglas de Navegación de Propuesta -->
+	<navigation-rule>
+		<from-view-id>/paginas/propuesta/*</from-view-id>
+		<navigation-case>
+			<from-outcome>inicioPropuesta</from-outcome>
+			<to-view-id>/paginas/propuesta/consultaPropuesta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>editarPropuesta</from-outcome> -->
+		<!-- <to-view-id>/paginas/propuesta/editarPropuesta.xhtml</to-view-id> -->
+		<!-- <redirect/> -->
+		<!-- </navigation-case> -->
+		<navigation-case>
+			<from-outcome>crearPropuesta</from-outcome>
+			<to-view-id>/paginas/propuesta/crearPropuesta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detallePropuesta</from-outcome>
+			<to-view-id>/paginas/propuesta/detallePropuesta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<validator>
+		<validator-id>emailValidador</validator-id>
+		<validator-class>co.com.sigepro.control.validadores.EmailValidador</validator-class>
+	</validator>
+	<converter>
+		<converter-id>convertidor</converter-id>
+		<converter-class>co.com.sigepro.control.convertidores.Convertidor</converter-class>
+	</converter>
+	<converter>
+		<converter-id>descripcionCorta</converter-id>
+		<converter-class>co.com.sigepro.control.convertidores.DescripcionCorta</converter-class>
+	</converter>
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>es</supported-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>co.com.sigepro.mensajes.mensajes</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+	<lifecycle>
+		<phase-listener id="MensajesListener">co.com.sigepro.control.MensajesListener</phase-listener>
+	</lifecycle>
+</faces-config>

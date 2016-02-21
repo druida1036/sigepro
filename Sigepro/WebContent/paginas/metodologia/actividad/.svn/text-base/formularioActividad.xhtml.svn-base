@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+	<h:panelGroup styleClass="franjazul-2Col" layout="block"
+		id="formularioActividad" style="width:638px">
+		<ui:include src="formaActividad.xhtml" />
+	</h:panelGroup>
+	<h:panelGroup styleClass="panel-tab" layout="block">
+		<rich:tabPanel id="dependencias" switchType="ajax">
+
+			<rich:tab id="datosGeneralesMetodologia"
+				rendered="#{metodologiaBean.vistaMetodologia == 'M'}">
+				<ui:include src="datosGeneralesActividadM.xhtml" />
+			</rich:tab>
+			
+			<rich:tab id="datosGeneralesPlanacion"
+				rendered="${metodologiaBean.vistaMetodologia == 'P'}">
+				<ui:include src="datosGeneralesActividad.xhtml" />
+			</rich:tab>
+			
+			<rich:tab id="datosGeneralesEjecucion"
+				rendered="${metodologiaBean.vistaMetodologia == 'E'}">
+				<ui:include src="datosGeneralesActividadE.xhtml" />
+			</rich:tab>
+
+
+			<rich:tab id="precedentes">
+				<ui:include src="actividadesPrecedentes.xhtml" />
+			</rich:tab>
+			<rich:tab id="aprobaciones">
+				<ui:include src="actividadesPorAprobar.xhtml" />
+			</rich:tab>
+			<rich:tab id="plantillas">
+				<ui:include src="plantillaActividad.xhtml" />
+			</rich:tab>
+			<rich:tab id="notificaciones">
+				<ui:include src="notificacionActividad.xhtml" />
+			</rich:tab>
+			<rich:tab id="herramientas">
+				<ui:include src="herramientaActividad.xhtml" />
+			</rich:tab>
+		</rich:tabPanel>
+	</h:panelGroup>
+</ui:composition>

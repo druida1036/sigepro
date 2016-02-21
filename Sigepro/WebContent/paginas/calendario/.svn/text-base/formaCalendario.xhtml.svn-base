@@ -1,0 +1,90 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a:outputPanel ajaxRendered="true">
+		<h:panelGrid id="formaCalendario" columns="2" columnClasses="name">
+			<h:outputLabel for="nombre" value="#{msg['jsp.lbl.nombre']}:"
+				styleClass="requerido" />
+			<h:inputText id="nombre" value="#{calendarioBean.calendario.nombre}"
+				required="true" size="50" maxlength="50">				
+			</h:inputText>		
+
+			<h:outputLabel for="descripcion"
+				value="#{msg['jsp.lbl.descripcion']}:" styleClass="requerido" />
+			<h:inputTextarea id="descripcion"
+				value="#{calendarioBean.calendario.descripcion}" required="true" cols="65"
+				rows="3" >				
+			</h:inputTextarea>
+					
+			<h:outputLabel for="horasTrabajo"
+				value="#{msg['jsp.lbl.horasTrabajo']}:" styleClass="requerido" />
+			<h:inputText id="horasTrabajo"
+				value="#{calendarioBean.calendario.horasTrabajo}" required="true"
+				size="50" maxlength="100">				
+			</h:inputText>
+			
+			<h:outputLabel for="diasTrabajo"
+				value="#{msg['jsp.lbl.diasTrabajo']}:" styleClass="requerido" />
+				
+			<h:panelGroup id="diasTrabajo" styleClass="radio">
+				<h:selectBooleanCheckbox id="domingo"
+					value="#{calendarioBean.calendario.diasTrabajo[0]}">					
+				</h:selectBooleanCheckbox>
+				
+				<h:outputLabel for="domingo" value="#{msg['jsp.lbl.domingo']}" />
+				<!--  -->
+				<h:selectBooleanCheckbox id="lunes"
+					value="#{calendarioBean.calendario.diasTrabajo[1]}">					
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="lunes" value="#{msg['jsp.lbl.lunes']}" />
+
+				<h:selectBooleanCheckbox id="martes"
+					value="#{calendarioBean.calendario.diasTrabajo[2]}">					
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="martes" value="#{msg['jsp.lbl.martes']}" />
+
+				<h:selectBooleanCheckbox id="miercoles"
+					value="#{calendarioBean.calendario.diasTrabajo[3]}">					
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="miercoles" value="#{msg['jsp.lbl.miercoles']}" />
+
+				<h:selectBooleanCheckbox id="jueves"
+					value="#{calendarioBean.calendario.diasTrabajo[4]}">					
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="jueves" value="#{msg['jsp.lbl.jueves']}" />
+
+				<h:selectBooleanCheckbox id="viernes"
+					value="#{calendarioBean.calendario.diasTrabajo[5]}">				
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="viernes" value="#{msg['jsp.lbl.viernes']}" />
+
+				<h:selectBooleanCheckbox id="sabado"
+					value="#{calendarioBean.calendario.diasTrabajo[6]}">					
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="sabado" value="#{msg['jsp.lbl.sabado']}" />
+			</h:panelGroup>
+			
+			<h:outputLabel for="ctlEstado" value="#{msg['jsp.lbl.ctlEstado']}:"
+				styleClass="requerido" />
+			<h:selectOneMenu id="ctlEstado"
+				value="#{calendarioBean.calendario.ctlEstado}">
+				<f:selectItem itemLabel="#{msg['jsp.lbl.ctlEstado.activo']}"
+					itemValue="1" />
+				<f:selectItem itemLabel="#{msg['jsp.lbl.ctlEstado.inactivo']}"
+					itemValue="0" />
+			</h:selectOneMenu>
+		</h:panelGrid>
+	</a:outputPanel>
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

@@ -1,0 +1,33 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:panelGrid columns="2" columnClasses="name">
+		<h:outputLabel for="Descripcion"
+			value="#{msg['jsp.lbl.descripcion']}:" styleClass="requerido" />
+		<h:inputTextarea id="Descripcion"
+			value="#{reunionBean.acta.descripcion}" required="true" rows="5"
+			cols="40">
+		</h:inputTextarea>
+		<h:outputLabel for="documento" value="#{msg['jsp.lbl.ctlEstado']}:"
+			styleClass="requerido" />
+		<rich:fileUpload fileUploadListener="#{reunionBean.cargarDocumento}"
+			id="documento" listHeight="50px" listWidth="307px"
+			uploadControlLabel="#{msg['jsp.lbl.cargar']}" required="true"
+			maxFilesQuantity="1" acceptedTypes="doc,docx" allowFlash="true"
+			immediateUpload="true" >
+		</rich:fileUpload>
+	</h:panelGrid>
+
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

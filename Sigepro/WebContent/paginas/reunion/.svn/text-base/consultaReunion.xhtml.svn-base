@@ -1,0 +1,102 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="reunionForm">
+
+			<rich:simpleTogglePanel id="reunion"
+				label="#{msg['jsp.reunion.consulta']}" switchType="ajax">
+
+				<h:panelGrid columns="2">
+					<h:outputLabel for="desde" value="#{msg['jsp.lbl.rangoDesde']}:"
+						styleClass="requerido" />
+					<rich:calendar id="desde" cellWidth="25px" cellHeight="25px"
+						style="width:120px" value="#{reunionListaBean.desde}"
+						datePattern="d/M/yyyy"></rich:calendar>
+					<h:outputLabel for="hasta" value="#{msg['jsp.lbl.rangoHasta']}:"
+						styleClass="requerido" />
+					<rich:calendar id="hasta" cellWidth="25px" cellHeight="25px"
+						style="width:120px" value="#{reunionListaBean.hasta}"
+						datePattern="d/M/yyyy"></rich:calendar>
+					<h:outputLabel for="asunto" value="#{msg['jsp.reunion.asunto']}: " />
+					<h:inputText id="asunto" value="#{reunionListaBean.reunion.asunto}"
+						maxlength="100" size="50" />
+				</h:panelGrid>
+			</rich:simpleTogglePanel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="buscar" value="#{msg['jsp.btn.buscar']}"
+					action="#{reunionListaBean.consultar}" reRender="resultados" />
+				<a:commandButton id="limpiar" value="#{msg['jsp.btn.limpiar']}"
+					action="#{reunionListaBean.limpiar}" reRender="reunion,resultados" />
+			</h:panelGroup>
+
+			<rich:panel id="resultados" styleClass="results">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText
+							value="#{msg['jsp.lbl.resultados']} (#{reunionListaBean.numeroResultados})" />
+					</h:panelGrid>
+				</f:facet>
+
+				<h:panelGroup layout="block">
+					<h:outputText value="#{msg['jsp.lbl.noResultados']}"
+						rendered="#{empty reunionListaBean.reuniones}"
+						styleClass="textosenfranjaazul" />
+
+					<rich:dataTable id="tablareunion" var="reunion"
+						value="#{reunionListaBean.reuniones}"
+						rendered="#{not empty reunionListaBean.reuniones}" rows="10">
+						<rich:column sortBy="#{reunion.asunto}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.reunion.asunto']}" />
+							</f:facet>
+							<h:outputText id="asunto" value="#{reunion.asunto}" />
+						</rich:column>
+
+						<rich:column sortBy="#{reunion.fecha}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.reunion.fecha']}" />
+							</f:facet>
+							<h:outputText id="fecha" value="#{reunion.fecha}" >
+							<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+							</h:outputText>
+						</rich:column>			
+
+						<rich:column styleClass="action">
+							<f:facet name="header">
+								<h:outputText value="#{msg['jsp.lbl.accion']}" />
+							</f:facet>
+							<a:commandButton id="ver" action="#{reunionListaBean.ver}"
+								image="/tema/imagen/ver.bmp">
+								<f:setPropertyActionListener value="#{reunion}"
+									target="#{reunionListaBean.reunionSeleccionado}" />
+							</a:commandButton>
+							<a:commandButton id="editar" action="#{reunionListaBean.editar}"
+								image="/tema/imagen/editar.png">
+								<f:setPropertyActionListener value="#{reunion}"
+									target="#{reunionListaBean.reunionSeleccionado}" />
+							</a:commandButton>
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:datascroller id="paginadorreunion" for="tablareunion"
+						renderIfSinglePage="false" />
+				</h:panelGroup>
+			</rich:panel>
+
+			<h:panelGroup styleClass="actionButtons" layout="block">
+				<a:commandButton id="crear"
+					value="#{msg['jsp.reunion.crearReunion']}"
+					action="#{reunionListaBean.crear}" />
+			</h:panelGroup>
+		</a:form>
+	</ui:define>
+</ui:composition>

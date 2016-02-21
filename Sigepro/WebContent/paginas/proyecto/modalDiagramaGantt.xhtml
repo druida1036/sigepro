@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+<rich:modalPanel id="modalDiagramaGantt" autosized="true"
+	moveable="true">
+	<h:form>
+		<rich:panel id="panelGantt">
+			<f:facet name="header">
+				<h:panelGrid columns="2" width="100%">
+					<h:outputText value="#{msg['jsp.lbl.gantt']}" />
+				</h:panelGrid>
+			</f:facet>
+			<rich:paint2D id="gantt" width="600" height="300" format="png"
+				paint="#{ganttBean.paint}" data="#{ganttBean.paginador}" />
+			<rich:spacer width="150px" />
+			<rich:inputNumberSlider showInput="false"
+				value="#{ganttBean.paginador.indice}" step="6" minValue="0"
+				maxValue="#{ganttBean.paginador.maxResultados}">
+				<a:support event="onchange" reRender="gantt" />
+			</rich:inputNumberSlider>
+
+		</rich:panel>
+		<h:panelGroup styleClass="actionButtons" layout="block">
+
+			<a:commandButton id="cancelar" value="#{msg['jsp.btn.volver']}"
+				onclick="Richfaces.hideModalPanel('modalDiagramaGantt');return false;"
+				immediate="true" />
+		</h:panelGroup>
+	</h:form>
+</rich:modalPanel>
+</html>

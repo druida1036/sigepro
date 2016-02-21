@@ -1,0 +1,38 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/template.xhtml">
+
+	<ui:define name="body">
+		<a:form id="confirmaOlvidoContraseniaForm" prependId="false">
+
+			<rich:panel id="resultadosOk">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.login.olvidoContrasenia']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGroup styleClass="banner-autenticaciondeusuario"
+					layout="block">
+					<h:outputLabel for="RespuestaSecreta"
+						value="#{ingresoBean.mensajeValidacion}" />
+				</h:panelGroup>
+				<h:panelGroup styleClass="seleccionar">
+					<a:commandButton id="volverLogin" value="#{msg['jsp.btn.volver']}"
+						action="#{ingresoBean.volverLogin}" immediate="true" />
+				</h:panelGroup>
+			</rich:panel>
+
+
+			<h:panelGroup styleClass="franjazulvistobueno" layout="block"></h:panelGroup>
+
+
+
+		</a:form>
+	</ui:define>
+</ui:composition>

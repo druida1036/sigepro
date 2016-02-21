@@ -1,0 +1,71 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/facelets/layout/plantilla-principal.xhtml">
+
+	<ui:define name="body">
+		<a:form id="cuentaForm">
+			<rich:panel id="panelcuenta">
+				<f:facet name="header">
+					<h:panelGrid columns="2" width="100%">
+						<h:outputText value="#{msg['jsp.cuenta.administrarMiCuenta.titulo']}" />
+					</h:panelGrid>
+				</f:facet>
+				<h:panelGrid columns="2" styleClass="franjazul-2Col"
+					columnClasses="name,detalle">
+					<h:outputLabel for="Nombre" value="#{msg['jsp.lbl.nombre']}:" />
+					<h:outputText id="Nombre" value="#{cuentaBean.cuenta.nombre}"
+						required="true" size="50" maxlength="100" />
+					<h:outputLabel for="Apellido" value="#{msg['jsp.lbl.apellido']}:"/>
+					<h:outputText id="Apellido" value="#{cuentaBean.cuenta.apellido}"
+						required="true" size="50" maxlength="100" />
+					<h:outputLabel for="Direccion" value="#{msg['jsp.lbl.direccion']}:"/>
+					<h:outputText id="Direccion"
+						value="#{cuentaBean.cuenta.direccion}" required="true" size="50"
+						maxlength="100" />
+					<h:outputLabel for="Telefono" value="#{msg['jsp.lbl.telefono']}:"/>
+					<h:outputText id="Telefono" value="#{cuentaBean.cuenta.telefono}"
+						required="true" size="50" maxlength="100" />
+					<h:outputLabel for="Correo" value="#{msg['jsp.lbl.correo']}:"/>
+					<h:outputText id="Correo" value="#{cuentaBean.cuenta.correo}"
+						required="true" size="50" maxlength="100" />
+					<h:outputLabel for="Login" value="#{msg['jsp.lbl.login']}:" />
+					<h:outputText id="Login" value="#{cuentaBean.cuenta.login}"
+						required="true" size="50" maxlength="100" />
+					<h:outputLabel for="Organizacion" value="#{msg['jsp.lbl.cliente']}:" />
+					<h:outputText id="Organizacion"
+						value="#{cuentaBean.cuenta.cliente.nombre}"/>
+					<h:outputLabel for="Cargo" value="#{msg['jsp.lbl.cargo']}:" />
+					<h:outputText id="Cargo" value="#{cuentaBean.cuenta.cargo}"
+						required="true" size="50" maxlength="100" />
+					<h:outputLabel for="ip"
+						value="#{msg['jsp.lbl.ctlIp']}:" />
+					<h:outputText id="ip"
+						value="#{cuentaBean.cuenta.ctlIp}" />
+					<h:outputLabel for="Modificador"
+						value="#{msg['jsp.lbl.ctlUsuario']}:" />
+					<h:outputText id="Modificador"
+						value="#{cuentaBean.cuenta.ctlUsuario}" />
+					<h:outputLabel for="Modificacion"
+						value="#{msg['jsp.lbl.ctlFecMod']}:" />
+					<h:outputText id="Modificacion"
+						value="#{cuentaBean.cuenta.ctlFecMod}" />
+					<h:outputLabel for="creacion"
+						value="#{msg['jsp.lbl.ctlFecAlta']}:" />
+					<h:outputText id="creacion"
+						value="#{cuentaBean.cuenta.ctlFecAlta}" />
+					<h:outputLabel for="Estado"
+								value="#{msg['jsp.lbl.ctlEstado']}:" styleClass="requerido" />
+					<h:outputText id="Estado"
+								value="${cuentaBean.cuenta.ctlEstado == 1 ? msg['jsp.lbl.ctlEstado.activo'] : msg['jsp.lbl.ctlEstado.inactivo']}" />
+				</h:panelGrid>
+			</rich:panel>
+
+		</a:form>
+	</ui:define>
+</ui:composition>

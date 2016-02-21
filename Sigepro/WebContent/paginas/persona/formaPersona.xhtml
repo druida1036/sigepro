@@ -1,0 +1,70 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:panelGrid columns="2" columnClasses="name">
+		<h:outputLabel for="Nombre" value="#{msg['jsp.lbl.nombre']}:"
+			styleClass="requerido" />
+		<h:inputText id="Nombre" value="#{personaBean.persona.nombre}"
+			required="true" size="50" maxlength="100" />
+		<h:outputLabel for="Apellido" value="#{msg['jsp.lbl.apellido']}:"
+			styleClass="requerido" />
+		<h:inputText id="Apellido" value="#{personaBean.persona.apellido}"
+			required="true" size="50" maxlength="100" />
+		<h:outputLabel for="Direccion" value="#{msg['jsp.lbl.direccion']}:"
+			styleClass="requerido" />
+		<h:inputText id="Direccion" value="#{personaBean.persona.direccion}"
+			required="true" size="50" maxlength="100" />
+		<h:outputLabel for="Telefono" value="#{msg['jsp.lbl.telefono']}:"
+			styleClass="requerido" />
+		<h:inputText id="Telefono" value="#{personaBean.persona.telefono}"
+			required="true" size="50" maxlength="15"> 
+			<rich:beanValidator summary="#{msg['error.formatoTelefono']}" />
+		</h:inputText>
+		<h:outputLabel for="Correo" value="#{msg['jsp.lbl.correo']}:"
+			styleClass="requerido" />
+		<h:inputText id="Correo" value="#{personaBean.persona.correo}"
+			required="true" size="50" maxlength="100" >
+			<rich:beanValidator summary="#{msg['error.login.email-invalido']}" />
+		</h:inputText>
+		<h:outputLabel for="Login" value="#{msg['jsp.lbl.login']}:"
+			styleClass="requerido" />
+		<h:inputText id="Login" value="#{personaBean.persona.login}"
+			required="true" size="50" maxlength="100" >
+			<rich:beanValidator summary="#{msg['error.login.duplicado']}" />
+		</h:inputText>
+		<h:outputLabel for="Organizacion" value="#{msg['jsp.lbl.cliente']}:"
+			styleClass="requerido" />
+		<h:selectOneMenu id="Organizacion"
+			value="#{personaBean.persona.cliente.id}" >
+			<f:selectItems value="#{personaBean.clientes.lista}" />
+		</h:selectOneMenu>
+
+		<h:outputLabel for="Cargo" value="#{msg['jsp.lbl.cargo']}:"
+			styleClass="requerido" />
+		<h:inputText id="Cargo" value="#{personaBean.persona.cargo}"
+			required="true" size="50" maxlength="100" />
+
+		<h:outputLabel for="ctlEstado" value="#{msg['jsp.lbl.ctlEstado']}:"
+			styleClass="requerido" />
+		<h:selectOneMenu id="ctlEstado"
+			value="#{personaBean.persona.ctlEstado}">
+			<f:selectItem itemLabel="#{msg['jsp.lbl.ctlEstado.activo']}"
+				itemValue="1" />
+			<f:selectItem itemLabel="#{msg['jsp.lbl.ctlEstado.inactivo']}"
+				itemValue="0" />
+		</h:selectOneMenu>
+	</h:panelGrid>
+
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

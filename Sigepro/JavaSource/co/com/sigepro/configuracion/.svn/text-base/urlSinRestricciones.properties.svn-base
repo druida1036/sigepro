@@ -1,0 +1,3 @@
+urlSinRestricciones=/faces/paginas/login/login.xhtml /faces/paginas/registro/registrarUsuario.xhtml /faces/paginas/bienvenida/bienvenida.xhtml /faces/paginas/login/olvidoContrasenia.xhtml /faces/paginas/login/consejosSeguridad.xhtml /faces/paginas/login/privacidadCondiciones.xhtml /faces/paginas/cuenta/confirmaCambioContrasenia.xhtml /faces/paginas/registro/condiciones.html /faces/paginas/login/consejos.html /faces/paginas/login/validaRespuesta.xhtml /faces/paginas/login/confirmaValidaRespuesta.xhtml
+paginaLogin=/faces/paginas/login/login.xhtml
+paginaAccesoDenegado=/faces/paginas/error/errorSeguridad.xhtml

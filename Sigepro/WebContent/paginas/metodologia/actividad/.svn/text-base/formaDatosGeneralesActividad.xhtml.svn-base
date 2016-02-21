@@ -1,0 +1,70 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<f:facet name="label">
+		<h:panelGroup>
+			<h:outputText value="#{msg['jsp.metodologia.datosGenerales']}" />
+		</h:panelGroup>
+	</f:facet>
+	<h:panelGrid styleClass="franjazul-4Col" columnClasses="name,,name"
+		columns="4">
+		<h:outputLabel for="tipoAprobacion" value="#{msg['jsp.lbl.tipoAprobacion']}:"
+			styleClass="requerido" />
+		<h:selectBooleanCheckbox value="#{metodologiaBean.actividad.tipoAprobacion}"
+			id="tipoAprobacion" required="true" />
+
+		<h:outputLabel for="Peso" value="#{msg['jsp.lbl.peso']}:"
+			styleClass="requerido" />
+		<rich:inputNumberSlider value="#{metodologiaBean.actividad.peso}"
+			id="Peso" required="true" />
+
+		<h:outputLabel for="FechaInicio"
+			value="#{msg['jsp.lbl.fechaInicio']}:" styleClass="requerido"
+			rendered="#{metodologiaBean.proyectoEnPlaneacion and metodologiaBean.vistaProyecto}" />
+		<rich:calendar value="#{metodologiaBean.actividad.fechaInicio}"
+			id="FechaInicio" required="true" cellWidth="24px" cellHeight="22px"
+			datePattern="d/M/yyyy" style="width:150px" inputSize="12"
+			rendered="#{metodologiaBean.proyectoEnPlaneacion  and metodologiaBean.vistaProyecto}" />
+
+		<h:outputLabel for="Duracion" value="#{msg['jsp.lbl.duracion']}:"
+			styleClass="requerido"
+			rendered="#{metodologiaBean.proyectoEnPlaneacion  and metodologiaBean.vistaProyecto}" />
+		<h:inputText value="#{metodologiaBean.actividad.duracion}"
+			id="Duracion" required="true"
+			rendered="#{metodologiaBean.proyectoEnPlaneacion  and metodologiaBean.vistaProyecto}">
+			<rich:beanValidator summary="colocar mensaje" />
+		</h:inputText>
+		<h:outputLabel for="RolResponsable"
+			value="#{msg['jsp.lbl.rolResponsable']}:" styleClass="requerido" />
+		<h:selectOneMenu id="RolResponsable"
+			value="#{metodologiaBean.listadoRoles.idSeleccionado}"
+			valueChangeListener="#{metodologiaBean.actualizarUsuariosPorRol}">
+			<f:selectItems value="#{metodologiaBean.listadoRoles.lista}">
+			</f:selectItems>
+			<a:support event="onchange" reRender="Asignado" bypassUpdates="true"
+				ajaxSingle="true" />
+		</h:selectOneMenu>
+		<h:outputLabel for="Asignado" value="#{msg['jsp.lbl.asignado']}:"
+			styleClass="requerido" />
+		<h:selectOneMenu id="Asignado"
+			value="#{metodologiaBean.listadoUsuarios.idSeleccionado}"
+			valueChangeListener="#{metodologiaBean.asignarReponsable}">
+			<f:selectItems value="#{metodologiaBean.listadoUsuarios.lista}"></f:selectItems>
+			<a:support event="onchange" reRender="Asignado" bypassUpdates="true"
+				ajaxSingle="true" />
+		</h:selectOneMenu>
+	</h:panelGrid>
+
+	<h:panelGroup styleClass="MT10" layout="block">
+		<h:outputLabel value="#{msg['jsp.lbl.camposRequeridos']}"
+			styleClass="requeridos" />
+	</h:panelGroup>
+
+</ui:composition>

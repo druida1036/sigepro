@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.format_sql">true</property>
+  <property name="hibernate.use_sql_comments">true</property>
+  <property name="hibernate.jdbc.use_streams_for_binary">true</property>
+  <property name="hibernate.connection.autocommit">false</property>
+  <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <property name="connection.pool_size">0</property>
+  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+  <mapping class="co.com.sigepro.entidades.Accion"/>
+  <mapping class="co.com.sigepro.entidades.Acta"/>
+  <mapping class="co.com.sigepro.entidades.Actividad"/>
+  <mapping class="co.com.sigepro.entidades.Calendario"/>
+  <mapping class="co.com.sigepro.entidades.Categoria"/>
+  <mapping class="co.com.sigepro.entidades.Cliente"/>
+  <mapping class="co.com.sigepro.entidades.Documento"/>
+  <mapping class="co.com.sigepro.entidades.Detalle"/>
+  <mapping class="co.com.sigepro.entidades.Especialidad"/>
+  <mapping class="co.com.sigepro.entidades.Festivo"/>
+  <mapping class="co.com.sigepro.entidades.Herramienta"/>
+  <mapping class="co.com.sigepro.entidades.Menu"/>
+  <mapping class="co.com.sigepro.entidades.Metodologia"/>
+  <mapping class="co.com.sigepro.entidades.Notificacion"/>
+  <mapping class="co.com.sigepro.entidades.Pagina"/>
+  <mapping class="co.com.sigepro.entidades.Persona"/>
+  <mapping class="co.com.sigepro.entidades.PersonaEspecialidad"/>
+  <mapping class="co.com.sigepro.entidades.PersonaEspecialidadPK"/>
+  <mapping class="co.com.sigepro.entidades.Plantilla"/>
+  <mapping class="co.com.sigepro.entidades.Proceso"/>
+  <mapping class="co.com.sigepro.entidades.Propuesta"/>
+  <mapping class="co.com.sigepro.entidades.Proyecto"/>
+  <mapping class="co.com.sigepro.entidades.Recurso"/>
+  <mapping class="co.com.sigepro.entidades.Reunion"/>
+  <mapping class="co.com.sigepro.entidades.Rol"/>
+  <mapping class="co.com.sigepro.entidades.RolPaginaAccion"/>
+  <mapping class="co.com.sigepro.entidades.RolPaginaAccionPK"/>
+  <mapping class="co.com.sigepro.entidades.Submenu"/>
+  <mapping class="co.com.sigepro.entidades.Subsistema"/>
+  <mapping class="co.com.sigepro.entidades.Variable"/>
+  <event type="pre-update">
+   <listener class="co.com.sigepro.persistencia.eventos.registrarAuditoria"/>
+  </event>
+  <event type="pre-insert">
+   <listener class="co.com.sigepro.persistencia.eventos.registrarAuditoria"/>
+  </event>
+  <event type="pre-delete">
+   <listener class="co.com.sigepro.persistencia.eventos.registrarAuditoria"/>
+  </event>
+  <event type="pre-collection-remove">
+   <listener class="co.com.sigepro.persistencia.eventos.registrarAuditoria"/>
+  </event>
+ </session-factory>
+</hibernate-configuration>
